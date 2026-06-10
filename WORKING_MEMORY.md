@@ -11,7 +11,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
 - **Active phase:** Phase 8: Feature/Workflow Buildout
 - **Active step:** Wait for user instructions.
-- **Last completed step:** Implemented Workout Intensity Modes (Moderate vs. Extreme) by adding a dropdown selector, decorating exercises with moderate/extreme data attributes, and routing updates through URL query parameter `m=y`.
+- **Last completed step:** Polished intensity modes, simplified dropdown text, prioritized 'm' query param order, and introduced a red-tinted theme for Extreme mode.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
@@ -38,4 +38,5 @@ Read this block first when starting a new AI/session, and update it before endin
 * **User & Agent:** Stabilized repository by creating `README.md`, `.gitignore`, and structured `WORKING_MEMORY.md` matching `PROJECT_STARTER.md` guidelines.
 * **User & Agent:** Doubled the top margin of `h2` elements to 40px, keeping it at 20px for the first `h2` in a parent container using CSS `:first-of-type`.
 * **User & Agent:** Set the "Start" (Overview) view as default active in the HTML markup (adding `active` class to `#overview` and the corresponding nav button) and updated router comments.
-* **User & Agent:** Implemented Workout Intensity Modes (Moderate vs. Extreme), adding a select dropdown in the Options section, mapping rep differences using data attributes, and updating URL query strings to include `m=y`. 
+* **User & Agent:** Implemented Workout Intensity Modes (Moderate vs. Extreme), adding a select dropdown in the Options section, mapping rep differences using data attributes, and updating URL query strings to include `m=y`.
+* **User & Agent:** Polished workout intensity mode: removed parentheses details from select labels, placed `m` query parameter before `day` in URL query strings, and added a custom red-tinted CSS theme switch for Extreme mode. 

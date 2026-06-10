@@ -15,6 +15,13 @@
             --border-color: #e2e8f0;
         }
 
+        body.theme-extreme {
+            --primary-color: #ef4444;
+            --primary-hover: #dc2626;
+            --bg-color: #fef2f2;
+            --border-color: #fee2e2;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -27,6 +34,7 @@
             color: var(--text-color);
             line-height: 1.6;
             padding-bottom: 40px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         header {
@@ -604,8 +612,8 @@
                 <div style="margin-top: 20px; display: flex; align-items: center; gap: 10px;">
                     <label for="modeSelect" style="font-weight: 600; font-size: 0.95rem; color: var(--text-color);">Workout Intensity Mode:</label>
                     <select id="modeSelect" onchange="setMode(this.value)" style="padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border-color); background-color: var(--card-bg); color: var(--text-color); font-size: 0.95rem; font-weight: 500; cursor: pointer; outline: none; transition: border-color 0.2s;">
-                        <option value="moderate">Moderate (46yo active man)</option>
-                        <option value="extreme">Extreme (20yo athletic man)</option>
+                        <option value="moderate">Moderate</option>
+                        <option value="extreme">Extreme</option>
                     </select>
                 </div>
         </div>
@@ -675,11 +683,11 @@
             const currentUrl = new URL(window.location.href);
             const params = new URLSearchParams();
             
-            if (dayId && dayId !== 'overview') {
-                params.set('day', dayId);
-            }
             if (mode === 'extreme') {
                 params.set('m', 'y');
+            }
+            if (dayId && dayId !== 'overview') {
+                params.set('day', dayId);
             }
             
             const queryString = params.toString();
@@ -697,6 +705,14 @@
             // Sync select element state
             const modeSelect = document.getElementById('modeSelect');
             if (modeSelect) modeSelect.value = modeValue;
+
+            // Apply theme tint
+            const body = document.body;
+            if (modeValue === 'extreme') {
+                body.classList.add('theme-extreme');
+            } else {
+                body.classList.remove('theme-extreme');
+            }
 
             // Dynamically update repetition texts in the DOM
             const repElements = document.querySelectorAll('.exercise-reps');
