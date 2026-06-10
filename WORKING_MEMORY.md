@@ -16,11 +16,12 @@ Read this block first when starting a new AI/session, and update it before endin
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
   - Do not introduce build steps or bundlers unless explicitly requested.
+  - **Do not run `git push`; only stage and commit changes locally. The user will push manually.**
 - **Current risks/concerns:** None at this stage.
 - **Protected areas:** [index.html](file:///c:/Repos/workouts/index.html) logic.
 - **Current scratch/local-only files:** None.
 - **Current verification commands:** None (manual browser checks of [index.html](file:///c:/Repos/workouts/index.html)).
-- **Current commit/push status:** Local changes to `index.html` and `WORKING_MEMORY.md` need commit/push.
+- **Current commit/push status:** Local main is clean. Future commits remain local.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ---
