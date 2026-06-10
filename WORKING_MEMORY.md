@@ -21,7 +21,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Protected areas:** [index.html](file:///c:/Repos/workouts/index.html) logic.
 - **Current scratch/local-only files:** None.
 - **Current verification commands:** None (manual browser checks of [index.html](file:///c:/Repos/workouts/index.html)).
-- **Current commit/push status:** Local main has uncommitted changes. Ready to be staged and committed.
+- **Current commit/push status:** Local main is clean and ahead of origin/main by 4 commits. Ready for manual push.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ---
