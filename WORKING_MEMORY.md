@@ -11,7 +11,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
 - **Active phase:** Phase 8: Feature/Workflow Buildout
 - **Active step:** Wait for user instructions.
-- **Last completed step:** Polished intensity modes, simplified dropdown text, prioritized 'm' query param order, and introduced a red-tinted theme for Extreme mode.
+- **Last completed step:** Added verified embeddable YouTube videos featuring male-led instruction for all 21 Saturday/Sunday exercises.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
@@ -21,7 +21,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Protected areas:** [index.html](file:///c:/Repos/workouts/index.html) logic.
 - **Current scratch/local-only files:** None.
 - **Current verification commands:** None (manual browser checks of [index.html](file:///c:/Repos/workouts/index.html)).
-- **Current commit/push status:** Local main is clean. Future commits remain local.
+- **Current commit/push status:** Local main has uncommitted changes. Ready to be staged and committed.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ---
