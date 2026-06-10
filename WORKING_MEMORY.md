@@ -11,7 +11,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
 - **Active phase:** Phase 9: Polish and Readiness
 - **Active step:** Wait for user instructions.
-- **Last completed step:** Refined heading layout by doubling top margins of `h2` elements (to 40px) while maintaining the original 20px top margin for the first `h2` in each workout section using `:first-of-type`.
+- **Last completed step:** Set "Start" (Overview) as the active default view directly in HTML classes (reducing render delay) and cleaned up routing comments, and doubled top margins of non-first `h2` elements.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
@@ -36,4 +36,5 @@ Read this block first when starting a new AI/session, and update it before endin
 
 ### Session 2
 * **User & Agent:** Stabilized repository by creating `README.md`, `.gitignore`, and structured `WORKING_MEMORY.md` matching `PROJECT_STARTER.md` guidelines.
-* **User & Agent:** Doubled the top margin of `h2` elements to 40px, keeping it at 20px for the first `h2` in a parent container using CSS `:first-of-type`. 
+* **User & Agent:** Doubled the top margin of `h2` elements to 40px, keeping it at 20px for the first `h2` in a parent container using CSS `:first-of-type`.
+* **User & Agent:** Set the "Start" (Overview) view as default active in the HTML markup (adding `active` class to `#overview` and the corresponding nav button) and updated router comments. 

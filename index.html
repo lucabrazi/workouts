@@ -369,7 +369,7 @@
         <nav class="nav-container" id="navModal">
             <div class="nav-modal-content">
                 <button class="close-btn" onclick="toggleMenu()">✕</button>
-                <button class="nav-btn" onclick="setDay('overview')">Start</button>
+                <button class="nav-btn active" onclick="setDay('overview')">Start</button>
                 <button class="nav-btn" onclick="setDay('monday')">Mon</button>
                 <button class="nav-btn" onclick="setDay('tuesday')">Tue</button>
                 <button class="nav-btn" onclick="setDay('wednesday')">Wed</button>
@@ -586,7 +586,7 @@
         </div>
 
         <!-- OVERVIEW -->
-        <div id="overview" class="workout-day">
+        <div id="overview" class="workout-day active">
             <h1>Weekly Overview</h1>
             <ul style="margin-top: 20px;" class="overview-list">
                 <li><a href="#" onclick="setDay('monday'); return false;"><strong>Monday:</strong> Bodyweight + jump rope circuit</a></li>
@@ -825,7 +825,7 @@
             }
         }
 
-        // On initial page load: check URL variable or default to 'monday'
+        // On initial page load: check URL variable or default to 'overview' (Start)
         window.addEventListener('DOMContentLoaded', () => {
             // 1. Initialize rounds first so dynamic checkboxes are created
             initRounds();
