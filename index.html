@@ -10,8 +10,8 @@
             --primary-hover: #1d4ed8;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --text-color: #1e293b;
-            --text-muted: #64748b;
+            --text-color: #000000;
+            --text-muted: rgb(46, 49, 54);
             --border-color: #e2e8f0;
         }
 
@@ -37,26 +37,83 @@
             z-index: 100;
         }
 
-        .nav-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 10px;
+        .header-top {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .header-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            padding: 0 5px;
+        }
+
+        .nav-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            align-items: center;
             justify-content: center;
-            gap: 8px;
+        }
+
+        .nav-container.show {
+            display: flex;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .nav-modal-content {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 90%;
+            max-width: 300px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-muted);
         }
 
         .nav-btn {
             background: none;
             border: 1px solid var(--border-color);
-            padding: 8px 14px;
-            border-radius: 20px;
+            padding: 10px 14px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 500;
             color: var(--text-color);
             transition: all 0.2s ease;
+            width: 100%;
         }
 
         .nav-btn:hover {
@@ -146,23 +203,121 @@
             padding: 10px 12px;
             border-bottom: 1px solid #f1f5f9;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
         }
 
         li:last-child {
             border-bottom: none;
         }
 
-        li input[type="checkbox"] {
-            margin-top: 5px;
-            margin-right: 12px;
-            transform: scale(1.1);
+        .exercise-label {
+            display: flex;
+            align-items: center;
+            width: 100%;
             cursor: pointer;
         }
 
-        li input[type="checkbox"]:checked + span {
-            text-decoration: line-through;
+        .exercise-label input[type="checkbox"] {
+            margin-top: 0;
+            margin-right: 15px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .exercise-name {
+            flex-grow: 1;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .exercise-reps {
+            text-align: right;
             color: var(--text-muted);
+            font-size: 0.9em;
+            margin-left: 15px;
+            white-space: nowrap;
+        }
+
+        .exercise-label input[type="checkbox"]:checked ~ .exercise-name,
+        .exercise-label input[type="checkbox"]:checked ~ .exercise-reps {
+            text-decoration: line-through;
+            color: #94a3b8;
+        }
+
+        .info-icon {
+            background: #e2e8f0;
+            border: none;
+            color: #475569;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            font-family: serif;
+            cursor: pointer;
+            margin-left: 10px;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .info-icon:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .rounds-container {
+            margin-bottom: 25px;
+        }
+
+        .round-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #f8fafc;
+            border: 1px solid var(--border-color);
+            padding: 8px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .round-btn {
+            background-color: white;
+            border: 1px solid var(--border-color);
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-color);
+            transition: all 0.2s;
+        }
+
+        .round-btn:not(:disabled):hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .round-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .round-indicator {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .round-list {
+            display: none;
+        }
+
+        .round-list.active {
+            display: block;
         }
 
         .rest-message {
@@ -171,20 +326,74 @@
             color: var(--text-muted);
             font-size: 1.1rem;
         }
+        .overview-list a {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .overview-list a:hover {
+            text-decoration: underline;
+        }
+
+        .day-options {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            text-align: right;
+        }
+
+        .reset-action {
+            color: #ef4444;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .reset-action:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <nav class="nav-container">
-            <button class="nav-btn" onclick="setDay('monday')">Mon</button>
-            <button class="nav-btn" onclick="setDay('tuesday')">Tue</button>
-            <button class="nav-btn" onclick="setDay('wednesday')">Wed</button>
-            <button class="nav-btn" onclick="setDay('thursday')">Thu</button>
-            <button class="nav-btn" onclick="setDay('friday')">Fri</button>
-            <button class="nav-btn" onclick="setDay('weekend')">Sat/Sun</button>
-            <button class="nav-btn" onclick="setDay('overview')">Overview</button>
+        <div class="header-top">
+            <div class="header-title">Weekly Workout</div>
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
+        </div>
+        <nav class="nav-container" id="navModal">
+            <div class="nav-modal-content">
+                <button class="close-btn" onclick="toggleMenu()">✕</button>
+                <button class="nav-btn" onclick="setDay('overview')">Start</button>
+                <button class="nav-btn" onclick="setDay('monday')">Mon</button>
+                <button class="nav-btn" onclick="setDay('tuesday')">Tue</button>
+                <button class="nav-btn" onclick="setDay('wednesday')">Wed</button>
+                <button class="nav-btn" onclick="setDay('thursday')">Thu</button>
+                <button class="nav-btn" onclick="setDay('friday')">Fri</button>
+                <button class="nav-btn" onclick="setDay('weekend')">Sat/Sun</button>
+            </div>
         </nav>
+
+        <!-- Info Modal -->
+        <div class="nav-container" id="infoModal" onclick="closeInfoModal()">
+            <div class="nav-modal-content" onclick="event.stopPropagation()">
+                <button class="close-btn" onclick="closeInfoModal()">✕</button>
+                <h3 id="infoModalTitle" style="color: var(--primary-color); border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 5px;">Exercise</h3>
+                <p id="infoModalDesc" style="color: var(--text-muted); font-size: 0.95rem;">Description</p>
+                <button id="infoModalVideoBtn" onclick="openVideoModal()" style="display: none; margin-top: 15px; background: #ef4444; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; align-self: flex-start; align-items: center; gap: 5px;">
+                    ▶ Watch Video
+                </button>
+            </div>
+        </div>
+
+        <!-- Fullscreen Video Modal -->
+        <div class="nav-container" id="videoModal" onclick="closeVideoModal()">
+            <div class="nav-modal-content" style="width: 95%; max-width: 800px; height: 60vh; padding: 10px; background: #000;" onclick="event.stopPropagation()">
+                <button class="close-btn" style="position: absolute; top: -35px; right: 0; color: white; font-size: 1.5rem;" onclick="closeVideoModal()">✕</button>
+                <iframe id="videoIframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px; background: #000;"></iframe>
+            </div>
+        </div>
     </header>
 
     <main class="container">
@@ -197,25 +406,27 @@
 
             <h2>Warm-up</h2>
             <ul>
-                <li><input type="checkbox"><span>Marching knee lifts — 20 total</span></li>
-                <li><input type="checkbox"><span>Arm circles — 10 forward, 10 backward</span></li>
-                <li><input type="checkbox"><span>Bodyweight squats — 10</span></li>
-                <li><input type="checkbox"><span>Hip hinges — 10</span></li>
-                <li><input type="checkbox"><span>Easy jump rope — 30–60 skips</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Marching knee lifts</span><span class="exercise-reps">20 total</span></label><button class="info-icon" data-name="Marching knee lifts" data-desc="Lift your knees up high, alternating legs, engaging your core." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Arm circles</span><span class="exercise-reps">10 forward, 10 backward</span></label><button class="info-icon" data-name="Arm circles" data-desc="Extend arms to the side and make small circular motions to warm up the shoulders." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Bodyweight squats</span><span class="exercise-reps">10</span></label><button class="info-icon" data-name="Bodyweight squats" data-desc="Stand with feet shoulder-width apart, lower your hips as if sitting in a chair." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Hip hinges</span><span class="exercise-reps">10</span></label><button class="info-icon" data-name="Hip hinges" data-desc="Keep your legs mostly straight and hinge at the hips, feeling a stretch in the hamstrings." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Easy jump rope</span><span class="exercise-reps">30–60 skips</span></label><button class="info-icon" data-name="Easy jump rope" data-desc="Light, steady jumping focusing on rhythm." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Main Circuit <span class="rounds">3 Rounds</span></h2>
             <ul>
-                <li><input type="checkbox"><span>Alt, Double then Triple Hops</span></li>
-                <li><input type="checkbox"><span>Pushups — 14</span></li>
-                <li><input type="checkbox"><span>Jump rope — 60 skips</span></li>
-                <li><input type="checkbox"><span>Lunges, varied types — 12 total</span></li>
-                <li><input type="checkbox"><span>Jump rope — 60 skips</span></li>
-                <li><input type="checkbox"><span>Heel touches / crunches — 15</span></li>
-                <li><input type="checkbox"><span>Jump rope — 60 skips</span></li>
-                <li><input type="checkbox"><span>Hip hinges, glute bridges, or good mornings — 10–12</span></li>
-                <li><input type="checkbox"><span>Jump rope — 60 skips</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Pushups</span><span class="exercise-reps">14</span></label><button class="info-icon" data-name="Pushups" data-desc="Keep a straight body line and lower your chest to the floor, then push back up." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name" data-round-text="Jump rope — Alternating Skips|Jump rope — Double Hops|Jump rope — Triple Hops">Jump rope — Alternating Skips</span><span class="exercise-reps">60 skips</span></label><button class="info-icon" data-name="Jump rope" data-desc="Jump rope dynamically, alternating your feet or practicing double/triple hops." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Lunges, varied types</span><span class="exercise-reps">12 total</span></label><button class="info-icon" data-name="Lunges" data-desc="Step forward, backward, or sideways, dropping your hips until both knees are bent at a 90-degree angle." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name" data-round-text="Jump rope — Alternating Skips|Jump rope — Double Hops|Jump rope — Triple Hops">Jump rope — Alternating Skips</span><span class="exercise-reps">60 skips</span></label><button class="info-icon" data-name="Jump rope" data-desc="Jump rope dynamically, alternating your feet or practicing double/triple hops." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Heel touches / crunches</span><span class="exercise-reps">15</span></label><button class="info-icon" data-name="Heel touches" data-desc="Lie on your back, lift your shoulders slightly, and alternate reaching for your heels to target obliques." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name" data-round-text="Jump rope — Alternating Skips|Jump rope — Double Hops|Jump rope — Triple Hops">Jump rope — Alternating Skips</span><span class="exercise-reps">60 skips</span></label><button class="info-icon" data-name="Jump rope" data-desc="Jump rope dynamically, alternating your feet or practicing double/triple hops." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Glute bridges</span><span class="exercise-reps">10–12</span></label><button class="info-icon" data-name="Glute bridges" data-desc="Lie on your back with knees bent, squeeze glutes, and lift hips off the floor." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name" data-round-text="Jump rope — Alternating Skips|Jump rope — Double Hops|Jump rope — Triple Hops">Jump rope — Alternating Skips</span><span class="exercise-reps">60 skips</span></label><button class="info-icon" data-name="Jump rope" data-desc="Jump rope dynamically, alternating your feet or practicing double/triple hops." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
+            <div class="day-options">
+                <a href="#" class="reset-action" onclick="resetDay('monday'); return false;">Reset Day</a>
+            </div>
         </div>
 
         <!-- TUESDAY -->
@@ -224,10 +435,13 @@
             <div class="rest-message">
                 <p>🧘‍♂️ Take it easy today!</p>
                 <ul style="margin-top:20px; text-align:left;">
-                    <li><input type="checkbox"><span>Easy walk — optional</span></li>
-                    <li><input type="checkbox"><span>Light mobility — optional</span></li>
-                    <li><input type="checkbox"><span>Full rest — also fine</span></li>
+                    <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Easy walk</span><span class="exercise-reps">optional</span></label><button class="info-icon" data-name="Easy walk" data-desc="A relaxed pace walk to get blood flowing and aid recovery." onclick="openInfoModal(event, this)">i</button></li>
+                    <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Light mobility</span><span class="exercise-reps">optional</span></label><button class="info-icon" data-name="Light mobility" data-desc="Gentle stretching and movement through full ranges of motion without pushing to fatigue." onclick="openInfoModal(event, this)">i</button></li>
+                    <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Full rest</span><span class="exercise-reps">also fine</span></label><button class="info-icon" data-name="Full rest" data-desc="Take the day completely off to let your muscles and central nervous system recover." onclick="openInfoModal(event, this)">i</button></li>
                 </ul>
+            </div>
+            <div class="day-options">
+                <a href="#" class="reset-action" onclick="resetDay('tuesday'); return false;">Reset Day</a>
             </div>
         </div>
 
@@ -239,30 +453,33 @@
 
             <h2>Warm-up <span class="rounds">2 Rounds</span></h2>
             <ul>
-                <li><input type="checkbox"><span>Marching knee lifts — 20 total</span></li>
-                <li><input type="checkbox"><span>Jumping jacks or step jacks — 20</span></li>
-                <li><input type="checkbox"><span>Bodyweight squats — 10</span></li>
-                <li><input type="checkbox"><span>Arm circles — 10 forward, 10 backward</span></li>
-                <li><input type="checkbox"><span>Sledgehammer halos — 10 total</span></li>
-                <li><input type="checkbox"><span>Hip hinges — 10</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Marching knee lifts</span><span class="exercise-reps">20 total</span></label><button class="info-icon" data-name="Marching knee lifts" data-desc="Lift your knees up high, alternating legs, engaging your core." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Jumping jacks or step jacks</span><span class="exercise-reps">20</span></label><button class="info-icon" data-name="Jumping jacks" data-desc="Jump with arms and legs spread, then back together." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Bodyweight squats</span><span class="exercise-reps">10</span></label><button class="info-icon" data-name="Bodyweight squats" data-desc="Stand with feet shoulder-width apart, lower your hips as if sitting in a chair." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Arm circles</span><span class="exercise-reps">10 forward, 10 backward</span></label><button class="info-icon" data-name="Arm circles" data-desc="Extend arms to the side and make small circular motions to warm up the shoulders." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Sledgehammer halos</span><span class="exercise-reps">10 total</span></label><button class="info-icon" data-name="Sledgehammer halos" data-desc="Hold a weight or object and circle it around your head to warm up shoulders." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Hip hinges</span><span class="exercise-reps">10</span></label><button class="info-icon" data-name="Hip hinges" data-desc="Keep your legs mostly straight and hinge at the hips, feeling a stretch in the hamstrings." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Main Circuit <span class="rounds">4 Rounds</span></h2>
             <ul>
-                <li><input type="checkbox"><span>Y-T-W raises — 3 each position (5 if no pullups)</span></li>
-                <li><input type="checkbox"><span>Shoulder-blade squeezes — 8–12</span></li>
-                <li><input type="checkbox"><span>Pull-ups — 2 reps (Add a 3rd rep only if the first 2 feel easy)</span></li>
-                <li><input type="checkbox"><span>Burpees — 2 reps (Step back, step forward, stand tall. Jump optional)</span></li>
-                <li><input type="checkbox"><span>Standing cross-body punches — 30 total</span></li>
-                <li><input type="checkbox"><span>Turkish get-ups — 2 total (1 per side, bodyweight or light weight)</span></li>
-                <li><input type="checkbox"><span>Low-impact skaters — 20 total</span></li>
-                <li><input type="checkbox"><span>Mountain climbers — 20 total (Slow and controlled)</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Y-T-W raises</span><span class="exercise-reps">3 each position (5 if no pullups)</span></label><button class="info-icon" data-name="Y-T-W raises" data-desc="Bend over slightly and raise arms to form the letters Y, T, and W to target the upper back." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Shoulder-blade squeezes</span><span class="exercise-reps">8–12</span></label><button class="info-icon" data-name="Shoulder-blade squeezes" data-desc="Pull your shoulder blades together as if squeezing a pencil between them." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Pull-ups</span><span class="exercise-reps">2 reps (Add a 3rd rep if easy)</span></label><button class="info-icon" data-name="Pull-ups" data-desc="Hang from a bar and pull your chin over the bar." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Burpees</span><span class="exercise-reps">2 reps</span></label><button class="info-icon" data-name="Burpees" data-desc="Drop to a pushup position, jump feet back, and stand or jump up." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Standing cross-body punches</span><span class="exercise-reps">30 total</span></label><button class="info-icon" data-name="Cross-body punches" data-desc="Punch across your body, twisting your torso and pivoting your back foot." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Turkish get-ups</span><span class="exercise-reps">2 total (1 per side)</span></label><button class="info-icon" data-name="Turkish get-ups" data-desc="A complex full-body movement going from lying on the floor to standing, holding a weight overhead." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Low-impact skaters</span><span class="exercise-reps">20 total</span></label><button class="info-icon" data-name="Low-impact skaters" data-desc="Step laterally from side to side, sweeping the back leg behind you." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Mountain climbers</span><span class="exercise-reps">20 total</span></label><button class="info-icon" data-name="Mountain climbers" data-desc="In a plank position, bring alternating knees towards your chest." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Curl Finisher</h2>
             <ul>
-                <li><input type="checkbox"><span>Curls — 2–3 sets of 8–12 reps (Keep reps clean, stop with 1–2 in the tank)</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Curls</span><span class="exercise-reps">2–3 sets of 8–12 reps</span></label><button class="info-icon" data-name="Curls" data-desc="Curl dumbbells towards your shoulders, keeping elbows pinned to your sides." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
+            <div class="day-options">
+                <a href="#" class="reset-action" onclick="resetDay('wednesday'); return false;">Reset Day</a>
+            </div>
         </div>
 
         <!-- THURSDAY -->
@@ -271,10 +488,13 @@
             <div class="rest-message">
                 <p>🛌 Rest up. Avoid turning Thursday into a hard workout, because Friday is rope-focused.</p>
                 <ul style="margin-top:20px; text-align:left;">
-                    <li><input type="checkbox"><span>Easy walk — optional</span></li>
-                    <li><input type="checkbox"><span>Light stretching — optional</span></li>
-                    <li><input type="checkbox"><span>Full rest — good choice</span></li>
+                    <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Easy walk</span><span class="exercise-reps">optional</span></label><button class="info-icon" data-name="Easy walk" data-desc="A relaxed pace walk to get blood flowing and aid recovery." onclick="openInfoModal(event, this)">i</button></li>
+                    <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Light stretching</span><span class="exercise-reps">optional</span></label><button class="info-icon" data-name="Light stretching" data-desc="Gentle stretches holding positions for comfort, not pain." onclick="openInfoModal(event, this)">i</button></li>
+                    <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Full rest</span><span class="exercise-reps">good choice</span></label><button class="info-icon" data-name="Full rest" data-desc="Take the day completely off to let your muscles and central nervous system recover." onclick="openInfoModal(event, this)">i</button></li>
                 </ul>
+            </div>
+            <div class="day-options">
+                <a href="#" class="reset-action" onclick="resetDay('thursday'); return false;">Reset Day</a>
             </div>
         </div>
 
@@ -286,30 +506,33 @@
 
             <h2>Phase 1 — Warm-Up</h2>
             <ul>
-                <li><input type="checkbox"><span>Jogging in place — 60 total (30 per leg)</span></li>
-                <li><input type="checkbox"><span>Forward and backward arm circles — 20 total</span></li>
-                <li><input type="checkbox"><span>Jumping jacks — 40</span></li>
-                <li><input type="checkbox"><span>Slow freestyle jump rope — 100</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Jogging in place</span><span class="exercise-reps">60 total (30 per leg)</span></label><button class="info-icon" data-name="Jogging in place" data-desc="Jog without moving forward, landing lightly on the balls of your feet." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Forward and backward arm circles</span><span class="exercise-reps">20 total</span></label><button class="info-icon" data-name="Arm circles" data-desc="Extend arms to the side and make small circular motions to warm up the shoulders." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Jumping jacks</span><span class="exercise-reps">40</span></label><button class="info-icon" data-name="Jumping jacks" data-desc="Jump with arms and legs spread, then back together." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Slow freestyle jump rope</span><span class="exercise-reps">100</span></label><button class="info-icon" data-name="Freestyle jump rope" data-desc="Jump rope at a comfortable pace using any footwork style." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Phase 2 — Main Jump Rope Circuit <span class="rounds">5 Rounds</span></h2>
             <ul>
-                <li><input type="checkbox"><span>Basic bounce — 60</span></li>
-                <li><input type="checkbox"><span>Slow march in place — 20</span></li>
-                <li><input type="checkbox"><span>Alternating skip — 60</span></li>
-                <li><input type="checkbox"><span>Slow march in place — 20</span></li>
-                <li><input type="checkbox"><span>Basic bounce — 60</span></li>
-                <li><input type="checkbox"><span>Slow march in place — 20</span></li>
-                <li><input type="checkbox"><span>Double hops — 30 total</span></li>
-                <li><input type="checkbox"><span>Slow march in place — 20</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Basic bounce</span><span class="exercise-reps">60</span></label><button class="info-icon" data-name="Basic bounce" data-desc="Jump with both feet together on every turn of the rope." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Slow march in place</span><span class="exercise-reps">20</span></label><button class="info-icon" data-name="Slow march in place" data-desc="A recovery march keeping the legs moving but letting the heart rate come down." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Alternating skip</span><span class="exercise-reps">60</span></label><button class="info-icon" data-name="Alternating skip" data-desc="Jump rope while shifting weight from one foot to the other like jogging." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Slow march in place</span><span class="exercise-reps">20</span></label><button class="info-icon" data-name="Slow march in place" data-desc="A recovery march keeping the legs moving but letting the heart rate come down." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Basic bounce</span><span class="exercise-reps">60</span></label><button class="info-icon" data-name="Basic bounce" data-desc="Jump with both feet together on every turn of the rope." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Slow march in place</span><span class="exercise-reps">20</span></label><button class="info-icon" data-name="Slow march in place" data-desc="A recovery march keeping the legs moving but letting the heart rate come down." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Double hops</span><span class="exercise-reps">30 total</span></label><button class="info-icon" data-name="Double hops" data-desc="Jump twice on one foot, then twice on the other while swinging the rope." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Slow march in place</span><span class="exercise-reps">20</span></label><button class="info-icon" data-name="Slow march in place" data-desc="A recovery march keeping the legs moving but letting the heart rate come down." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Phase 3 — Cool-Down</h2>
             <ul>
-                <li><input type="checkbox"><span>Very slow jump rope — 50 reps</span></li>
-                <li><input type="checkbox"><span>Static calf stretch against a wall — 3 holds per leg (5 deep breaths each)</span></li>
-                <li><input type="checkbox"><span>Overhead tricep and shoulder stretch — 2 holds per arm (5 deep breaths each)</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Very slow jump rope</span><span class="exercise-reps">50 reps</span></label><button class="info-icon" data-name="Very slow jump rope" data-desc="A slow, relaxed jump rope pace for cooling down." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Static calf stretch against a wall</span><span class="exercise-reps">3 holds per leg</span></label><button class="info-icon" data-name="Static calf stretch" data-desc="Lean against a wall with one leg straight back to gently stretch the calf." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Overhead tricep and shoulder stretch</span><span class="exercise-reps">2 holds per arm</span></label><button class="info-icon" data-name="Overhead stretch" data-desc="Reach one arm overhead, bend the elbow, and gently pull back with the other hand." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
+            <div class="day-options">
+                <a href="#" class="reset-action" onclick="resetDay('friday'); return false;">Reset Day</a>
+            </div>
         </div>
 
         <!-- WEEKEND / FLEXIBLE -->
@@ -319,61 +542,126 @@
 
             <h2>Gentle Warm-Up</h2>
             <ul>
-                <li><input type="checkbox"><span>Marching knee lifts — 40 total</span></li>
-                <li><input type="checkbox"><span>Arm circles — 10 forward, 10 backward</span></li>
-                <li><input type="checkbox"><span>Hip hinges — 10</span></li>
-                <li><input type="checkbox"><span>Bodyweight squats — 10</span></li>
-                <li><input type="checkbox"><span>Shoulder rolls — 10 forward, 10 backward</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Marching knee lifts</span><span class="exercise-reps">40 total</span></label><button class="info-icon" data-name="Marching knee lifts" data-desc="Lift your knees up high, alternating legs, engaging your core." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Arm circles</span><span class="exercise-reps">10 forward, 10 backward</span></label><button class="info-icon" data-name="Arm circles" data-desc="Extend arms to the side and make small circular motions to warm up the shoulders." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Hip hinges</span><span class="exercise-reps">10</span></label><button class="info-icon" data-name="Hip hinges" data-desc="Keep your legs mostly straight and hinge at the hips, feeling a stretch in the hamstrings." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Bodyweight squats</span><span class="exercise-reps">10</span></label><button class="info-icon" data-name="Bodyweight squats" data-desc="Stand with feet shoulder-width apart, lower your hips as if sitting in a chair." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Shoulder rolls</span><span class="exercise-reps">10 forward, 10 backward</span></label><button class="info-icon" data-name="Shoulder rolls" data-desc="Roll your shoulders up, back, and down in a circular motion." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Mobility Circuit <span class="rounds">2 Rounds</span></h2>
             <ul>
-                <li><input type="checkbox"><span>Cat-cow — 8–10</span></li>
-                <li><input type="checkbox"><span>World’s greatest stretch — 3 per side</span></li>
-                <li><input type="checkbox"><span>90/90 hip switches — 8 total</span></li>
-                <li><input type="checkbox"><span>Hamstring stretch rocks — 8 per leg</span></li>
-                <li><input type="checkbox"><span>Calf stretch against wall — 3 deep breaths per leg</span></li>
-                <li><input type="checkbox"><span>Thoracic rotations — 6 per side</span></li>
-                <li><input type="checkbox"><span>Child’s pose reach-throughs — 5 per side</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Cat-cow</span><span class="exercise-reps">8–10</span></label><button class="info-icon" data-name="Cat-cow" data-desc="On all fours, arch your back up (cat) and then dip it down (cow)." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">World’s greatest stretch</span><span class="exercise-reps">3 per side</span></label><button class="info-icon" data-name="World's greatest stretch" data-desc="Lunge forward, drop elbow to instep, then twist and reach arm up to the ceiling." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">90/90 hip switches</span><span class="exercise-reps">8 total</span></label><button class="info-icon" data-name="90/90 hip switches" data-desc="Sit on the floor with both knees bent at 90 degrees, switch sides to stretch hip rotators." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Hamstring stretch rocks</span><span class="exercise-reps">8 per leg</span></label><button class="info-icon" data-name="Hamstring stretch rocks" data-desc="Kneel on one leg, straighten the other in front, and rock forward/backward gently." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Calf stretch against wall</span><span class="exercise-reps">3 deep breaths per leg</span></label><button class="info-icon" data-name="Calf stretch" data-desc="Lean against a wall with one leg straight back to gently stretch the calf." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Thoracic rotations</span><span class="exercise-reps">6 per side</span></label><button class="info-icon" data-name="Thoracic rotations" data-desc="On all fours or kneeling, rotate your upper spine and reach up towards the ceiling." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Child’s pose reach-throughs</span><span class="exercise-reps">5 per side</span></label><button class="info-icon" data-name="Child's pose reach-throughs" data-desc="In child's pose, thread one arm under the other to stretch the upper back and shoulder." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Gap-Filler Block <span class="rounds">2 Easy Rounds</span></h2>
             <ul>
-                <li><input type="checkbox"><span>Glute bridges — 12</span></li>
-                <li><input type="checkbox"><span>Dead bugs — 8 per side</span></li>
-                <li><input type="checkbox"><span>Bird dogs — 8 per side</span></li>
-                <li><input type="checkbox"><span>Prone Y-T-W raises — 5 each position</span></li>
-                <li><input type="checkbox"><span>Shoulder-blade squeezes or scapular pull-up hangs — 6–8</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Glute bridges</span><span class="exercise-reps">12</span></label><button class="info-icon" data-name="Glute bridges" data-desc="Lie on your back with knees bent, squeeze glutes, and lift hips off the floor." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Dead bugs</span><span class="exercise-reps">8 per side</span></label><button class="info-icon" data-name="Dead bugs" data-desc="Lie on your back, extend opposite arm and leg while keeping lower back flat against the floor." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Bird dogs</span><span class="exercise-reps">8 per side</span></label><button class="info-icon" data-name="Bird dogs" data-desc="On all fours, extend opposite arm and leg while keeping your back flat." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Prone Y-T-W raises</span><span class="exercise-reps">5 each position</span></label><button class="info-icon" data-name="Prone Y-T-W raises" data-desc="Lie face down and lift arms to form Y, T, and W shapes." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Shoulder-blade squeezes or scapular pull-up hangs</span><span class="exercise-reps">6–8</span></label><button class="info-icon" data-name="Scapular holds" data-desc="Pull your shoulder blades down and back, holding tension for a few seconds." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
 
             <h2>Easy Cool-Down</h2>
             <ul>
-                <li><input type="checkbox"><span>Kneeling hip-flexor stretch — 3 deep breaths per side</span></li>
-                <li><input type="checkbox"><span>Figure-4 glute stretch — 3 deep breaths per side</span></li>
-                <li><input type="checkbox"><span>Chest doorway stretch — 3 deep breaths per side</span></li>
-                <li><input type="checkbox"><span>Lat stretch or child’s pose — 5 deep breaths</span></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Kneeling hip-flexor stretch</span><span class="exercise-reps">3 deep breaths per side</span></label><button class="info-icon" data-name="Kneeling hip-flexor stretch" data-desc="Kneel on one knee, tuck your pelvis, and lean forward slightly to stretch the front of the hip." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Figure-4 glute stretch</span><span class="exercise-reps">3 deep breaths per side</span></label><button class="info-icon" data-name="Figure-4 glute stretch" data-desc="Lie on back, cross one ankle over opposite knee, and pull thigh towards chest." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Chest doorway stretch</span><span class="exercise-reps">3 deep breaths per side</span></label><button class="info-icon" data-name="Chest doorway stretch" data-desc="Place forearm on a doorframe and turn body away to stretch the chest." onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Lat stretch or child’s pose</span><span class="exercise-reps">5 deep breaths</span></label><button class="info-icon" data-name="Lat stretch" data-desc="Reach arms far forward while sitting hips back onto heels to stretch the back." onclick="openInfoModal(event, this)">i</button></li>
             </ul>
+            <div class="day-options">
+                <a href="#" class="reset-action" onclick="resetDay('weekend'); return false;">Reset Day</a>
+            </div>
         </div>
 
         <!-- OVERVIEW -->
         <div id="overview" class="workout-day">
-            <h1>Weekly Layout Overview</h1>
-            <ul style="margin-top: 20px;">
-                <li><span><strong>Monday:</strong> Bodyweight + jump rope circuit</span></li>
-                <li><span><strong>Tuesday:</strong> Rest / easy movement</span></li>
-                <li><span><strong>Wednesday:</strong> Full body + pulling + curls</span></li>
-                <li><span><strong>Thursday:</strong> Rest / recovery</span></li>
-                <li><span><strong>Friday:</strong> Jump rope conditioning</span></li>
-                <li><span><strong>Saturday or Sunday:</strong> Flexible stretching / gap-filler day</span></li>
-                <li><span><strong>Other weekend day:</strong> Rest</span></li>
+            <h1>Weekly Overview</h1>
+            <ul style="margin-top: 20px;" class="overview-list">
+                <li><a href="#" onclick="setDay('monday'); return false;"><strong>Monday:</strong> Bodyweight + jump rope circuit</a></li>
+                <li><a href="#" onclick="setDay('tuesday'); return false;"><strong>Tuesday:</strong> Rest / easy movement</a></li>
+                <li><a href="#" onclick="setDay('wednesday'); return false;"><strong>Wednesday:</strong> Full body + pulling + curls</a></li>
+                <li><a href="#" onclick="setDay('thursday'); return false;"><strong>Thursday:</strong> Rest / recovery</a></li>
+                <li><a href="#" onclick="setDay('friday'); return false;"><strong>Friday:</strong> Jump rope conditioning</a></li>
+                <li><a href="#" onclick="setDay('weekend'); return false;"><strong>Saturday or Sunday:</strong> Flexible stretching / gap-filler day</a></li>
             </ul>
+
+            <h1>Options</h1>
+                <ul class="overview-list" style="margin-top: 15px;">
+                    <li><a href="#" class="reset-action" onclick="resetWeek(); return false;"><strong>Reset Week:</strong> Uncheck everything and reset to Round 1</a></li>
+                </ul>
         </div>
 
     </main>
 
     <script>
+        // Function to toggle the modal menu
+        function toggleMenu() {
+            const modal = document.getElementById('navModal');
+            if (modal) modal.classList.toggle('show');
+        }
+
+        // Functions for the Exercise Info Modal
+        function openInfoModal(event, btn) {
+            event.stopPropagation(); // Prevents clicks from triggering parent elements
+            document.getElementById('infoModalTitle').textContent = btn.getAttribute('data-name');
+            document.getElementById('infoModalDesc').textContent = btn.getAttribute('data-desc');
+            
+            // Check for a video link and display the button if it exists
+            const videoBtn = document.getElementById('infoModalVideoBtn');
+            const videoUrl = btn.getAttribute('data-video');
+            if (videoUrl) {
+                videoBtn.style.display = 'flex';
+                videoBtn.setAttribute('data-url', videoUrl);
+            } else {
+                videoBtn.style.display = 'none';
+            }
+
+            const modal = document.getElementById('infoModal');
+            if (modal) modal.classList.add('show');
+        }
+
+        function closeInfoModal() {
+            const modal = document.getElementById('infoModal');
+            if (modal) modal.classList.remove('show');
+        }
+
+        function openVideoModal() {
+            let url = document.getElementById('infoModalVideoBtn').getAttribute('data-url');
+            if (!url) return;
+            
+            // Auto-convert standard YouTube links to iframe embed links
+            if (url.includes('youtube.com/watch?v=')) {
+                url = url.replace('youtube.com/watch?v=', 'youtube.com/embed/').split('&')[0];
+            } else if (url.includes('youtu.be/')) {
+                url = url.replace('youtu.be/', 'youtube.com/embed/').split('?')[0];
+            }
+
+            closeInfoModal(); // Close the info modal to make way for the video
+            document.getElementById('videoIframe').src = url;
+            const modal = document.getElementById('videoModal');
+            if (modal) modal.classList.add('show');
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            if (modal) modal.classList.remove('show');
+            document.getElementById('videoIframe').src = ''; // Clear src to stop video playback
+        }
+
         // Function to switch visible workout day and modify the URL query variable
         function setDay(dayId) {
+            // Close modal if open
+            const modal = document.getElementById('navModal');
+            if (modal) modal.classList.remove('show');
+
             // Hide all workout views
             const views = document.querySelectorAll('.workout-day');
             views.forEach(view => view.classList.remove('active'));
@@ -394,14 +682,150 @@
                     }
                 });
 
-                // Update the URL parameter without refreshing the page
-                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?day=' + dayId;
-                window.history.pushState({ path: newUrl }, '', newUrl);
+                // Update the URL parameter only if it's different to prevent redundant history states
+                const currentUrl = new URL(window.location.href);
+                if (dayId === 'overview') {
+                    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                    if (currentUrl.search !== '') {
+                        window.history.pushState({ path: newUrl }, '', newUrl);
+                    }
+                } else if (currentUrl.searchParams.get('day') !== dayId) {
+                    const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?day=' + dayId;
+                    window.history.pushState({ path: newUrl }, '', newUrl);
+                }
+            }
+        }
+
+        // Function to handle switching visual rounds
+        function changeRound(btn, direction, maxRounds) {
+            const controls = btn.parentElement;
+            const container = controls.parentElement;
+            const indicator = controls.querySelector('.round-indicator');
+            const lists = container.querySelectorAll('.round-list');
+            
+            let currentRound = 1;
+            lists.forEach(list => {
+                if (list.classList.contains('active')) currentRound = parseInt(list.dataset.round);
+            });
+            
+            let newRound = currentRound + direction;
+            if (newRound < 1) newRound = 1;
+            if (newRound > maxRounds) newRound = maxRounds;
+            
+            lists.forEach(list => list.classList.remove('active'));
+            container.querySelector(`.round-list[data-round="${newRound}"]`).classList.add('active');
+            indicator.textContent = `Round ${newRound} / ${maxRounds}`;
+            
+            controls.querySelector('.prev-round').disabled = (newRound === 1);
+            controls.querySelector('.next-round').disabled = (newRound === maxRounds);
+        }
+
+        // Dynamically build the UI for multiple rounds
+        function initRounds() {
+            document.querySelectorAll('.rounds').forEach(roundSpan => {
+                const h2 = roundSpan.parentElement;
+                const ul = h2.nextElementSibling;
+                if (ul && ul.tagName === 'UL') {
+                    const match = roundSpan.textContent.match(/(\d+)/);
+                    if (!match) return;
+                    
+                    const numRounds = parseInt(match[1]);
+                    const container = document.createElement('div');
+                    container.className = 'rounds-container';
+                    h2.parentNode.insertBefore(container, ul);
+                    
+                    const controls = document.createElement('div');
+                    controls.className = 'round-controls';
+                    controls.innerHTML = `
+                        <button class="round-btn prev-round" onclick="changeRound(this, -1, ${numRounds})" disabled>&larr; Prev</button>
+                        <span class="round-indicator">Round 1 / ${numRounds}</span>
+                        <button class="round-btn next-round" onclick="changeRound(this, 1, ${numRounds})">Next &rarr;</button>
+                    `;
+                    container.appendChild(controls);
+
+                    for(let i=1; i<=numRounds; i++) {
+                        const clone = (i === 1) ? ul : ul.cloneNode(true);
+                        clone.className = `round-list round-${i} ${i === 1 ? 'active' : ''}`;
+                        clone.dataset.round = i;
+
+                        // Update dynamic text variations per round
+                        clone.querySelectorAll('[data-round-text]').forEach(el => {
+                            const texts = el.getAttribute('data-round-text').split('|');
+                            el.textContent = texts[i - 1] || texts[texts.length - 1];
+                        });
+
+                        // Clear checked states on clones to ensure they start empty
+                        if(i !== 1) clone.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+                        container.appendChild(clone);
+                    }
+                }
+            });
+        }
+
+        // Function to reset all progress for the entire week
+        function resetWeek() {
+            if(confirm('Are you sure you want to reset all workout progress for the week?')) {
+                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                allCheckboxes.forEach((cb, index) => {
+                    cb.checked = false;
+                    localStorage.removeItem(`workout-cb-${index}`);
+                });
+
+                // Reset all dynamic rounds back to Round 1
+                document.querySelectorAll('.rounds-container').forEach(container => {
+                    const lists = container.querySelectorAll('.round-list');
+                    lists.forEach(list => list.classList.remove('active'));
+                    const firstRound = container.querySelector('.round-list[data-round="1"]');
+                    if (firstRound) firstRound.classList.add('active');
+                    
+                    const indicator = container.querySelector('.round-indicator');
+                    if (indicator) indicator.textContent = `Round 1 / ${lists.length}`;
+                    
+                    const prevBtn = container.querySelector('.prev-round');
+                    if (prevBtn) prevBtn.disabled = true;
+                    const nextBtn = container.querySelector('.next-round');
+                    if (nextBtn && lists.length > 1) nextBtn.disabled = false;
+                });
+            }
+        }
+
+        // Function to reset progress for a specific day
+        function resetDay(dayId) {
+            if(confirm('Are you sure you want to reset progress for this day?')) {
+                const dayDiv = document.getElementById(dayId);
+                if(!dayDiv) return;
+                
+                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                allCheckboxes.forEach((cb, index) => {
+                    if (dayDiv.contains(cb)) {
+                        cb.checked = false;
+                        localStorage.removeItem(`workout-cb-${index}`);
+                    }
+                });
+
+                // Reset dynamic rounds within this day only
+                dayDiv.querySelectorAll('.rounds-container').forEach(container => {
+                    const lists = container.querySelectorAll('.round-list');
+                    lists.forEach(list => list.classList.remove('active'));
+                    const firstRound = container.querySelector('.round-list[data-round="1"]');
+                    if (firstRound) firstRound.classList.add('active');
+                    
+                    const indicator = container.querySelector('.round-indicator');
+                    if (indicator) indicator.textContent = `Round 1 / ${lists.length}`;
+                    
+                    const prevBtn = container.querySelector('.prev-round');
+                    if (prevBtn) prevBtn.disabled = true;
+                    const nextBtn = container.querySelector('.next-round');
+                    if (nextBtn && lists.length > 1) nextBtn.disabled = false;
+                });
             }
         }
 
         // On initial page load: check URL variable or default to 'monday'
         window.addEventListener('DOMContentLoaded', () => {
+            // 1. Initialize rounds first so dynamic checkboxes are created
+            initRounds();
+
             const urlParams = new URLSearchParams(window.location.search);
             const initialDay = urlParams.get('day');
 
@@ -411,8 +835,19 @@
             if (initialDay && validDays.includes(initialDay.toLowerCase())) {
                 setDay(initialDay.toLowerCase());
             } else {
-                setDay('monday'); // Default fallback
+                setDay('overview'); // Default fallback
             }
+
+            // 2. Add LocalStorage persistence for all checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach((cb, index) => {
+                const savedState = localStorage.getItem(`workout-cb-${index}`);
+                if (savedState === 'true') cb.checked = true;
+
+                cb.addEventListener('change', (e) => {
+                    localStorage.setItem(`workout-cb-${index}`, e.target.checked);
+                });
+            });
         });
     </script>
 </body>
