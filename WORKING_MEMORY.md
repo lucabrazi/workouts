@@ -10,8 +10,8 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Current repo shape:** Flat root directory. Primary entry point: [index.html](file:///c:/Repos/workouts/index.html).
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
 - **Active phase:** Phase 0: Repo Stabilization
-- **Active step:** Align markdown files with `PROJECT_STARTER.md` guidelines and configure `.gitignore`.
-- **Last completed step:** Created README.md and updated WORKING_MEMORY.md structure.
+- **Active step:** Wait for user instructions.
+- **Last completed step:** Created [README.md](file:///c:/Repos/workouts/README.md), updated [WORKING_MEMORY.md](file:///c:/Repos/workouts/WORKING_MEMORY.md) structure, created [.gitignore](file:///c:/Repos/workouts/.gitignore), and pushed stabilization commit to remote.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
@@ -20,7 +20,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Protected areas:** [index.html](file:///c:/Repos/workouts/index.html) logic.
 - **Current scratch/local-only files:** None.
 - **Current verification commands:** None (manual browser checks of [index.html](file:///c:/Repos/workouts/index.html)).
-- **Current commit/push status:** Remote origin `https://github.com/lucabrazi/workouts.git` matches local `main`.
+- **Current commit/push status:** All changes pushed. Local `main` is up-to-date with `origin/main` on `https://github.com/lucabrazi/workouts.git`.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ---
