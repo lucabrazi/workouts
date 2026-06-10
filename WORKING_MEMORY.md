@@ -9,9 +9,9 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Project goal:** Weekly Workout Routine Tracker (Vanilla HTML/CSS/JS) with LocalStorage persistence, multi-round tracking, video embeds, and clean UI.
 - **Current repo shape:** Flat root directory. Primary entry point: [index.html](file:///c:/Repos/workouts/index.html).
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
-- **Active phase:** Phase 0: Repo Stabilization
+- **Active phase:** Phase 9: Polish and Readiness
 - **Active step:** Wait for user instructions.
-- **Last completed step:** Created [README.md](file:///c:/Repos/workouts/README.md), updated [WORKING_MEMORY.md](file:///c:/Repos/workouts/WORKING_MEMORY.md) structure, created [.gitignore](file:///c:/Repos/workouts/.gitignore), and pushed stabilization commit to remote.
+- **Last completed step:** Refined heading layout by doubling top margins of `h2` elements (to 40px) while maintaining the original 20px top margin for the first `h2` in each workout section using `:first-of-type`.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
@@ -20,7 +20,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Protected areas:** [index.html](file:///c:/Repos/workouts/index.html) logic.
 - **Current scratch/local-only files:** None.
 - **Current verification commands:** None (manual browser checks of [index.html](file:///c:/Repos/workouts/index.html)).
-- **Current commit/push status:** All changes pushed. Local `main` is up-to-date with `origin/main` on `https://github.com/lucabrazi/workouts.git`.
+- **Current commit/push status:** Local changes to `index.html` and `WORKING_MEMORY.md` need commit/push.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ---
@@ -33,3 +33,7 @@ Read this block first when starting a new AI/session, and update it before endin
 * **User & Agent:** Changed navigation to a hidden modal overlay with a hamburger menu.
 * **User & Agent:** Added an "Info" modal for each exercise, displaying descriptions and dynamically loading YouTube videos in a fullscreen modal if a `data-video` link is provided.
 * **User & Agent:** Cleaned up duplicate exercises and removed video links that blocked embedding (Error 153). 
+
+### Session 2
+* **User & Agent:** Stabilized repository by creating `README.md`, `.gitignore`, and structured `WORKING_MEMORY.md` matching `PROJECT_STARTER.md` guidelines.
+* **User & Agent:** Doubled the top margin of `h2` elements to 40px, keeping it at 20px for the first `h2` in a parent container using CSS `:first-of-type`. 
