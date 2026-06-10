@@ -11,7 +11,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
 - **Active phase:** Phase 8: Feature/Workflow Buildout
 - **Active step:** Wait for user instructions.
-- **Last completed step:** Added verified embeddable YouTube videos featuring male-led instruction for all 21 Saturday/Sunday exercises.
+- **Last completed step:** Added verified embeddable YouTube videos for all Sat/Sun exercises, and refined the mobile view layout so that exercise names stack above reps.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes in [index.html](file:///c:/Repos/workouts/index.html).
