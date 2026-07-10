@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Greece Trip 2026</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; background: #FAFAF8; color: #2C2C2A; margin: 0; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 28px 20px 60px; }
+  h1 { font-size: 22px; font-weight: 600; margin: 0 0 4px; }
+  .sub { font-size: 13px; color: #888780; margin: 0 0 20px; }
+  nav { display: flex; gap: 6px; border-bottom: 1px solid #D3D1C7; margin-bottom: 24px; flex-wrap: wrap; }
+  nav button { background: none; border: none; font-size: 14px; padding: 10px 14px; cursor: pointer; color: #5F5E5A; border-bottom: 2px solid transparent; }
+  nav button.active { color: #185FA5; border-bottom-color: #185FA5; font-weight: 600; }
+  section { display: none; }
+  section.active { display: block; }
+  h2 { font-size: 17px; font-weight: 600; margin: 24px 0 10px; }
+  h2:first-child { margin-top: 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid #E5E3DA; vertical-align: top; }
+  th { color: #888780; font-weight: 600; font-size: 12px; }
+  .callout { background: #F1EFE8; border-radius: 8px; padding: 12px 14px; font-size: 13px; margin-bottom: 16px; }
+  .leg { border-left: 3px solid #185FA5; padding: 4px 0 4px 12px; margin-bottom: 14px; }
+  .leg.sifnos { border-color: #534AB7; }
+  .leg.ioannina { border-color: #3B6D11; }
+  .leg h3 { font-size: 14px; font-weight: 600; margin: 0 0 4px; }
+  .leg p { font-size: 13px; margin: 2px 0; color: #444441; }
+  ul { font-size: 13px; padding-left: 18px; margin: 6px 0; }
+  .grid { display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: 5px; }
+  .dow { font-size: 12px; color: #888780; text-align: center; padding-bottom: 4px; }
+  .cell { border-radius: 8px; min-height: 64px; padding: 6px 7px; position: relative; border: 0.5px solid #D3D1C7; }
+  .num { font-size: 13px; font-weight: 600; }
+  .lbl { font-size: 10px; line-height: 1.3; margin-top: 3px; }
+  .badge { position: absolute; top: 6px; right: 6px; width: 15px; height: 15px; border-radius: 50%; border: 0.5px solid #888780; font-size: 9px; font-weight: 600; display: flex; align-items: center; justify-content: center; background: #fff; }
+  .athens { background: #E6F1FB; } .athens .num, .athens .lbl { color: #0C447C; }
+  .sifnos-cell { background: #EEEDFE; } .sifnos-cell .num, .sifnos-cell .lbl { color: #3C3489; }
+  .ioannina-cell { background: #EAF3DE; } .ioannina-cell .num, .ioannina-cell .lbl { color: #27500A; }
+  .travel { background: #F1EFE8; } .travel .num, .travel .lbl { color: #5F5E5A; }
+  .weekend { border: 1.5px dashed #BA7517; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 16px; font-size: 12px; color: #5F5E5A; }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; display: inline-block; vertical-align: -2px; margin-right: 6px; }
+  .doc-card { border: 0.5px solid #D3D1C7; border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+  .doc-card h3 { font-size: 14px; margin: 0 0 4px; }
+  .doc-card .meta { font-size: 12px; color: #888780; margin-bottom: 8px; }
+  .empty { font-size: 13px; color: #888780; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Greece 2026</h1>
+  <p class="sub">Jul 28 – Aug 28 &middot; Athens &middot; Sifnos &middot; Ioannina</p>
+  <nav>
+    <button class="active" data-tab="overview">Overview</button>
+    <button data-tab="calendar">Calendar</button>
+    <button data-tab="work">Work schedule</button>
+    <button data-tab="documents">Documents</button>
+  </nav>
+
+  <section id="overview" class="active">
+    <div class="callout">Work rule: 3 days/week from hotel Wi-Fi, zero work days in Sifnos. Total work days: 8–12, floating across the windows on the Work schedule tab.</div>
+
+    <h2>Travel days</h2>
+    <table>
+      <tr><th>Date</th><th>Plan</th></tr>
+      <tr><td>Tue Jul 28</td><td>Depart 10547 (~2PM pickup) &rarr; JFK &rarr; flight 8:35PM</td></tr>
+      <tr><td>Wed Jul 29</td><td>Land Athens 1:20PM &rarr; hotel near US Embassy / Kolonaki</td></tr>
+    </table>
+
+    <div class="leg">
+      <h3>Leg 1: Athens — Jul 29 – Aug 5 (8 days)</h3>
+      <p>Settle in, jet lag buffer, ancient sites and Kolonaki neighborhood life.</p>
+      <ul>
+        <li>Acropolis &amp; Acropolis Museum, Plaka old town, Syntagma / changing of the guard</li>
+        <li>National Garden, Lycabettus Hill sunset, Kolonaki cafes and boutiques</li>
+        <li>Possible day trip: Cape Sounio or Delphi</li>
+      </ul>
+      <p>Aug 6, 7AM: ferry to Sifnos</p>
+    </div>
+
+    <div class="leg sifnos">
+      <h3>Leg 2: Sifnos — Aug 6 – Aug 11 (6 days / 5 nights)</h3>
+      <p>Pure beach and island time — no work.</p>
+      <ul>
+        <li>Apollonia (main town), Kastro village</li>
+        <li>Beach rotation: Platys Gialos, Vathi, Chrissopigi</li>
+        <li>Pottery workshops, sunset dinner in Artemonas</li>
+      </ul>
+      <p>Aug 11, 10:55AM: leave Sifnos, back in Athens by ~1:30-2PM</p>
+    </div>
+
+    <div class="leg">
+      <h3>Leg 3: Athens — Aug 11 – 13 (3 days)</h3>
+      <p>Short reset before the long drive north.</p>
+      <p>Aug 14: drive to Ioannina</p>
+    </div>
+
+    <div class="leg ioannina">
+      <h3>Leg 4: Ioannina — Aug 14 – 24 (10 days)</h3>
+      <p>Mountains, lake town, family, two weekend side-trips.</p>
+      <ul>
+        <li>Ioannina Castle / old town, Its Kale, the island on Lake Pamvotida, lakefront tavernas</li>
+        <li>Weekend 1 (~Aug 15–16): overnight in Kastanianai, a village in the Pogoni area near the Albanian border / Kakavia crossing</li>
+        <li>Weekend 2 (~Aug 22–23): overnight in Stratinista</li>
+      </ul>
+      <p>Aug 24, morning: drive back to Athens</p>
+    </div>
+
+    <div class="leg">
+      <h3>Leg 5: Athens — Aug 24 – 28 (3-4 days)</h3>
+      <p>Wind-down, family time and/or hotel — lodging still TBD.</p>
+      <p>Aug 28, 10AM: flight home to NY</p>
+    </div>
+
+    <h2>Open items</h2>
+    <ul>
+      <li>Confirm Leg 5 lodging (family vs. hotel)</li>
+      <li>Confirm/reserve Kastanianai stay for Weekend 1</li>
+      <li>Confirm/reserve Stratinista stay for Weekend 2</li>
+      <li>Pick which days to work within each window</li>
+    </ul>
+  </section>
+
+  <section id="calendar">
+    <div class="grid" id="cal-grid"></div>
+    <div class="legend">
+      <span><span class="swatch" style="background:#E6F1FB"></span>Athens</span>
+      <span><span class="swatch" style="background:#EEEDFE"></span>Sifnos</span>
+      <span><span class="swatch" style="background:#EAF3DE"></span>Ioannina</span>
+      <span><span class="swatch" style="background:#F1EFE8"></span>Travel day</span>
+      <span><span class="swatch" style="background:#EAF3DE;border:1.5px dashed #BA7517"></span>Weekend trip</span>
+      <span><span class="badge" style="position:static;display:inline-flex;margin-right:6px">W</span>Work eligible</span>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="callout">Greece is EEST (UTC+3), 7 hours ahead of New York (EDT) all through the trip.</div>
+    <table>
+      <tr><th>Window</th><th>Dates</th><th>Location</th><th>Target</th><th>Notes</th></tr>
+      <tr><td>1</td><td>Jul 30 – Aug 5</td><td>Athens</td><td>4–5 days</td><td>first Athens stretch; skip Jul 29 (arrival/jet lag)</td></tr>
+      <tr><td>—</td><td>Aug 6 – 11</td><td>Sifnos</td><td>0 days</td><td>fully offline / no dedicated focused work</td></tr>
+      <tr><td>2</td><td>Aug 12 – 13</td><td>Athens</td><td>0–1 day</td><td>short reset before driving to Ioannina</td></tr>
+      <tr><td>3</td><td>Aug 17 – 21</td><td>Ioannina</td><td>3–4 days</td><td>weekdays only — weekends held for Kastanianai (15–16) and Stratinista (22–23); leaves at least 1 free weekday even at the high end</td></tr>
+      <tr><td>4</td><td>Aug 25 – 27</td><td>Athens</td><td>1–2 days</td><td>after the drive back, before flying home Aug 28; leaves room for a full free day before departure</td></tr>
+    </table>
+    <p class="empty">Total: 8–12 work days, floating within these windows.</p>
+  </section>
+
+  <section id="documents">
+    <div class="doc-card">
+      <h3>Out of office email</h3>
+      <div class="meta">Sent to work team ahead of the trip</div>
+      <p style="font-size:13px; white-space:pre-line;">Hi team,
+
+I'll be traveling from July 28 through August 28. I'll be working periodically throughout the trip, aiming for roughly 8-12 dedicated work days total during that window.
+
+One exception: August 6-11, pure island beach time, so no dedicated focused work during that stretch.
+
+I'll do my best to stay responsive and will prioritize anything urgent. I also plan to get some extra weekend work in before and after the trip.
+
+I really appreciate the flexibility here. I've typically taken only 8-10 days off per year on average over the past 22 years, and although this much time may be commensurate with my tenure, doing it all in one shot like this is a bit of a stretch, so thank you.
+
+Thanks,
+[Your name]</p>
+    </div>
+    <p class="empty">More documents will be added here as they're created.</p>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+const events = {
+  '2026-07-28': {leg:'travel', label:'Depart NY'},
+  '2026-07-29': {leg:'travel', label:'Arrive Athens'},
+  '2026-07-30': {leg:'athens', work:true},
+  '2026-07-31': {leg:'athens', work:true},
+  '2026-08-01': {leg:'athens', work:true},
+  '2026-08-02': {leg:'athens', work:true},
+  '2026-08-03': {leg:'athens', work:true},
+  '2026-08-04': {leg:'athens', work:true},
+  '2026-08-05': {leg:'athens', work:true},
+  '2026-08-06': {leg:'sifnos-cell', label:'7am ferry'},
+  '2026-08-07': {leg:'sifnos-cell'},
+  '2026-08-08': {leg:'sifnos-cell'},
+  '2026-08-09': {leg:'sifnos-cell'},
+  '2026-08-10': {leg:'sifnos-cell'},
+  '2026-08-11': {leg:'travel', label:'Leave 10:55am'},
+  '2026-08-12': {leg:'athens', work:true},
+  '2026-08-13': {leg:'athens', work:true},
+  '2026-08-14': {leg:'travel', label:'Drive to Ioannina'},
+  '2026-08-15': {leg:'ioannina-cell', weekend:true, label:'Kastanianai'},
+  '2026-08-16': {leg:'ioannina-cell', weekend:true, label:'Kastanianai'},
+  '2026-08-17': {leg:'ioannina-cell', work:true},
+  '2026-08-18': {leg:'ioannina-cell', work:true},
+  '2026-08-19': {leg:'ioannina-cell', work:true},
+  '2026-08-20': {leg:'ioannina-cell', work:true},
+  '2026-08-21': {leg:'ioannina-cell', work:true},
+  '2026-08-22': {leg:'ioannina-cell', weekend:true, label:'Stratinista'},
+  '2026-08-23': {leg:'ioannina-cell', weekend:true, label:'Stratinista'},
+  '2026-08-24': {leg:'travel', label:'Drive to Athens'},
+  '2026-08-25': {leg:'athens', work:true},
+  '2026-08-26': {leg:'athens', work:true},
+  '2026-08-27': {leg:'athens'},
+  '2026-08-28': {leg:'travel', label:'Flight home'}
+};
+const extra = [[2026,6,28],[2026,6,29],[2026,6,30],[2026,6,31]];
+const grid = document.getElementById('cal-grid');
+['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
+  const dh = document.createElement('div');
+  dh.className = 'dow'; dh.textContent = d;
+  grid.appendChild(dh);
+});
+const startCol = new Date(2026,7,1).getDay();
+const lead = startCol - extra.length;
+for (let i = 0; i < lead; i++) grid.appendChild(document.createElement('div'));
+function makeCell(y,m,d) {
+  const key = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  const ev = events[key];
+  const cell = document.createElement('div');
+  cell.className = 'cell' + (ev ? ' ' + ev.leg : '') + (ev && ev.weekend ? ' weekend' : '');
+  const num = document.createElement('div');
+  num.className = 'num'; num.textContent = d;
+  cell.appendChild(num);
+  if (ev && ev.label) {
+    const lbl = document.createElement('div');
+    lbl.className = 'lbl'; lbl.textContent = ev.label;
+    cell.appendChild(lbl);
+  }
+  if (ev && ev.work) {
+    const badge = document.createElement('div');
+    badge.className = 'badge'; badge.textContent = 'W';
+    cell.appendChild(badge);
+  }
+  return cell;
+}
+extra.forEach(([y,m,d]) => grid.appendChild(makeCell(y,m,d)));
+for (let d = 1; d <= 31; d++) grid.appendChild(makeCell(2026,7,d));
+</script>
+</body>
+</html>
