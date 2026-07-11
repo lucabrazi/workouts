@@ -31,17 +31,12 @@
   .ioannina-cell { background: #EAF3DE; } .ioannina-cell .num, .ioannina-cell .lbl { color: #27500A; }
   .travel { background: #F1EFE8; } .travel .num, .travel .lbl { color: #5F5E5A; }
   .weekend { border: 1.5px dashed #BA7517; }
-  .cell.has-event { cursor: pointer; }
-  .cell.has-event:active { opacity: .75; }
   .legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: .9rem; font-size: 11px; color: #5F5E5A; }
   .swatch { width: 11px; height: 11px; border-radius: 3px; display: inline-block; vertical-align: -1px; margin-right: 5px; }
   .doc-card h3 { font-size: 14px; }
   .doc-card .meta { font-size: 12px; color: #888780; }
   .doc-card pre { font-size: 13px; white-space: pre-wrap; font-family: inherit; margin: 0; }
-  .map-embed { position: relative; width: 100%; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 8px; border: .5px solid #D3D1C7; }
-  .map-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   @media (min-width: 576px) {
-    .map-embed { padding-bottom: 60%; }
     .cell { min-height: 68px; padding: 6px 7px; }
     .num { font-size: 13px; }
     .lbl { font-size: 10px; display: block; }
@@ -55,14 +50,14 @@
   <p class="text-secondary small mb-3">Jul 28 - Aug 28 &middot; Athens &middot; Sifnos &middot; Ioannina</p>
 
   <ul class="nav nav-pills mb-3 flex-nowrap overflow-auto" id="tabNav" role="tablist" style="gap:6px">
-    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#calendar" type="button">Calendar</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#overview" type="button">Overview</button></li>
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#overview" type="button">Overview</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#calendar" type="button">Calendar</button></li>
     <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#work" type="button">Work schedule</button></li>
-    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#places" type="button">Map</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#documents" type="button">Documents</button></li>
   </ul>
 
   <div class="tab-content">
-    <div class="tab-pane fade" id="overview">
+    <div class="tab-pane fade show active" id="overview">
       <div class="callout">Work rule: 3 days/week from hotel Wi-Fi, zero work days in Sifnos. Total work days: 8-12, floating across the windows on the Work schedule tab.</div>
 
       <h2>Travel days</h2>
@@ -74,7 +69,50 @@
       </table>
       </div>
 
-      <div id="legs-container"></div>
+      <div class="leg">
+        <h3>Leg 1: Athens - Jul 29 - Aug 5 (8 days)</h3>
+        <p>Settle in, jet lag buffer, ancient sites and Kolonaki neighborhood life.</p>
+        <ul class="small mb-1">
+          <li>Acropolis &amp; Acropolis Museum, Plaka old town, Syntagma / changing of the guard</li>
+          <li>National Garden, Lycabettus Hill sunset, Kolonaki cafes and boutiques</li>
+          <li>Possible day trip: Cape Sounio or Delphi</li>
+        </ul>
+        <p>Aug 6, 7AM: ferry to Sifnos</p>
+      </div>
+
+      <div class="leg sifnos">
+        <h3>Leg 2: Sifnos - Aug 6 - Aug 11 (6 days / 5 nights)</h3>
+        <p>Pure beach and island time - no work.</p>
+        <ul class="small mb-1">
+          <li>Apollonia (main town), Kastro village</li>
+          <li>Beach rotation: Platys Gialos, Vathi, Chrissopigi</li>
+          <li>Pottery workshops, sunset dinner in Artemonas</li>
+        </ul>
+        <p>Aug 11, 10:55AM: leave Sifnos, back in Athens by ~1:30-2PM</p>
+      </div>
+
+      <div class="leg">
+        <h3>Leg 3: Athens - Aug 11 - 13 (3 days)</h3>
+        <p>Short reset before the long drive north.</p>
+        <p>Aug 14: drive to Ioannina</p>
+      </div>
+
+      <div class="leg ioannina">
+        <h3>Leg 4: Ioannina - Aug 14 - 24 (10 days)</h3>
+        <p>Mountains, lake town, family, two weekend side-trips.</p>
+        <ul class="small mb-1">
+          <li>Ioannina Castle / old town, Its Kale, the island on Lake Pamvotida, lakefront tavernas</li>
+          <li>Weekend 1 (~Aug 15-16): overnight in Kastanianai, a village in the Pogoni area near the Albanian border / Kakavia crossing</li>
+          <li>Weekend 2 (~Aug 22-23): overnight in Stratinista</li>
+        </ul>
+        <p>Aug 24, morning: drive back to Athens</p>
+      </div>
+
+      <div class="leg">
+        <h3>Leg 5: Athens - Aug 24 - 28 (3-4 days)</h3>
+        <p>Wind-down, family time and/or hotel - lodging still TBD.</p>
+        <p>Aug 28, 10AM: flight home to NY</p>
+      </div>
 
       <h2>Open items</h2>
       <ul class="small">
@@ -85,7 +123,7 @@
       </ul>
     </div>
 
-    <div class="tab-pane fade show active" id="calendar">
+    <div class="tab-pane fade" id="calendar">
       <div class="grid" id="cal-grid"></div>
       <div class="legend">
         <span><span class="swatch" style="background:#E6F1FB"></span>Athens</span>
@@ -94,18 +132,6 @@
         <span><span class="swatch" style="background:#F1EFE8"></span>Travel day</span>
         <span><span class="swatch" style="background:#EAF3DE;border:1.5px dashed #BA7517"></span>Weekend trip</span>
         <span><span class="badge-w" style="position:static;display:inline-flex;margin-right:5px">W</span>Work eligible</span>
-      </div>
-    </div>
-
-    <div class="modal fade" id="dayModal" tabindex="-1">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="dayModalTitle"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body" id="dayModalBody"></div>
-        </div>
       </div>
     </div>
 
@@ -124,15 +150,26 @@
       <p class="text-secondary small fst-italic">Total: 8-12 work days, floating within these windows.</p>
     </div>
 
-    <div class="tab-pane fade" id="places">
-      <div class="callout d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <span>Saved places and restaurants for the trip.</span>
-        <a href="https://www.google.com/maps/d/u/0/viewer?mid=1NOZPEFAgKxEAgmtEpkBh2loqXn9bajw" target="_blank" rel="noopener" class="btn btn-sm" style="background:#185FA5;color:#fff;white-space:nowrap">Open full map ↗</a>
+    <div class="tab-pane fade" id="documents">
+      <div class="card doc-card mb-3">
+        <div class="card-body">
+          <h3 class="card-title">Out of office email</h3>
+          <div class="meta mb-2">Sent to work team ahead of the trip</div>
+          <pre>Hi team,
+
+I'll be traveling from July 28 through August 28. I'll be working periodically throughout the trip, aiming for roughly 8-12 dedicated work days total during that window.
+
+One exception: August 6-11, pure island beach time, so no dedicated focused work during that stretch.
+
+I'll do my best to stay responsive and will prioritize anything urgent. I also plan to get some extra weekend work in before and after the trip.
+
+I really appreciate the flexibility here. I've typically taken only 8-10 days off per year on average over the past 22 years, and although this much time may be commensurate with my tenure, doing it all in one shot like this is a bit of a stretch, so thank you.
+
+Thanks,
+[Your name]</pre>
+        </div>
       </div>
-      <div class="map-embed">
-        <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1NOZPEFAgKxEAgmtEpkBh2loqXn9bajw&ehbc=2E312F" allowfullscreen></iframe>
-      </div>
-      <p class="text-secondary small mt-2 fst-italic">If the map above doesn't load (some browsers/previews block embedded maps), use the "Open full map" button above instead.</p>
+      <p class="text-secondary small fst-italic">More documents will be added here as they're created.</p>
     </div>
   </div>
 </div>
@@ -173,76 +210,6 @@ const events = {
   '2026-08-27': {leg:'athens'},
   '2026-08-28': {leg:'travel', label:'Flight home'}
 };
-const legs = [
-  { id: 'athens1', cls: 'athens', modCls: '', title: 'Leg 1: Athens', range: 'Jul 29 – Aug 5 (8 days)',
-    desc: 'Settle in, jet lag buffer, ancient sites and Kolonaki neighborhood life.',
-    highlights: ['Acropolis & Acropolis Museum, Plaka old town, Syntagma / changing of the guard',
-      'National Garden, Lycabettus Hill sunset, Kolonaki cafes and boutiques',
-      'Possible day trip: Cape Sounio or Delphi'],
-    endNote: 'Aug 6, 7AM: ferry to Sifnos', start: '2026-07-29', end: '2026-08-05' },
-  { id: 'sifnos', cls: 'sifnos-cell', modCls: 'sifnos', title: 'Leg 2: Sifnos', range: 'Aug 6 – Aug 11 (6 days / 5 nights)',
-    desc: 'Pure beach and island time — no work.',
-    highlights: ['Apollonia (main town), Kastro village',
-      'Beach rotation: Platys Gialos, Vathi, Chrissopigi',
-      'Pottery workshops, sunset dinner in Artemonas'],
-    endNote: 'Aug 11, 10:55AM: leave Sifnos, back in Athens by ~1:30-2PM', start: '2026-08-06', end: '2026-08-11' },
-  { id: 'athens2', cls: 'athens', modCls: '', title: 'Leg 3: Athens', range: 'Aug 11 – 13 (3 days)',
-    desc: 'Short reset before the long drive north.',
-    highlights: [],
-    endNote: 'Aug 14: drive to Ioannina', start: '2026-08-11', end: '2026-08-13' },
-  { id: 'ioannina', cls: 'ioannina-cell', modCls: 'ioannina', title: 'Leg 4: Ioannina', range: 'Aug 14 – 24 (10 days)',
-    desc: 'Mountains, lake town, family, two weekend side-trips.',
-    highlights: ['Ioannina Castle / old town, Its Kale, the island on Lake Pamvotida, lakefront tavernas',
-      'Weekend 1 (~Aug 15-16): overnight in Kastanianai, a village in the Pogoni area near the Albanian border / Kakavia crossing',
-      'Weekend 2 (~Aug 22-23): overnight in Stratinista'],
-    endNote: 'Aug 24, morning: drive back to Athens', start: '2026-08-14', end: '2026-08-24' },
-  { id: 'athens3', cls: 'athens', modCls: '', title: 'Leg 5: Athens', range: 'Aug 24 – 28 (3-4 days)',
-    desc: 'Wind-down, family time and/or hotel — lodging still TBD.',
-    highlights: [],
-    endNote: 'Aug 28, 10AM: flight home to NY', start: '2026-08-24', end: '2026-08-28' }
-];
-const travelName = { travel: 'Travel day' };
-function findLeg(dateKey, cls) {
-  return legs.find(l => l.cls === cls && dateKey >= l.start && dateKey <= l.end);
-}
-function renderOverviewLegs() {
-  const container = document.getElementById('legs-container');
-  container.innerHTML = legs.map(l => `
-    <div class="leg ${l.modCls}">
-      <h3>${l.title}: ${l.range}</h3>
-      <p>${l.desc}</p>
-      ${l.highlights.length ? '<ul class="small mb-1">' + l.highlights.map(h => '<li>' + h + '</li>').join('') + '</ul>' : ''}
-      <p>${l.endNote}</p>
-    </div>`).join('');
-}
-renderOverviewLegs();
-function formatDate(y,m,d) {
-  const dt = new Date(y,m,d);
-  return dt.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
-}
-const clsColor = { athens: '#0C447C', 'sifnos-cell': '#3C3489', 'ioannina-cell': '#27500A', travel: '#5F5E5A' };
-function openDayModal(y,m,d,ev) {
-  const dateKey = y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
-  const color = clsColor[ev.leg];
-  document.getElementById('dayModalTitle').textContent = formatDate(y,m,d);
-  let name, detail;
-  if (ev.leg === 'travel') {
-    name = travelName.travel;
-    detail = '';
-  } else {
-    const leg = findLeg(dateKey, ev.leg);
-    name = leg ? leg.title : '';
-    detail = leg ? leg.desc + (leg.highlights.length ? ' ' + leg.highlights.join(' ') : '') : '';
-  }
-  let body = '<p class="fw-semibold mb-1" style="color:' + color + '">' + name + (ev.label ? ' — ' + ev.label : '') + '</p>';
-  if (ev.weekend) body += '<p class="small text-warning-emphasis mb-2">Weekend side-trip</p>';
-  if (ev.work) body += '<p class="small mb-2"><span class="badge-w" style="position:static;display:inline-flex;margin-right:5px">W</span>Work-eligible day</p>';
-  if (detail) body += '<p class="small mb-0">' + detail + '</p>';
-  document.getElementById('dayModalBody').innerHTML = body;
-  const modal = new bootstrap.Modal(document.getElementById('dayModal'));
-  modal.show();
-}
-
 const extra = [[2026,6,28],[2026,6,29],[2026,6,30],[2026,6,31]];
 const grid = document.getElementById('cal-grid');
 ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => {
@@ -257,7 +224,7 @@ function makeCell(y,m,d) {
   const key = y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
   const ev = events[key];
   const cell = document.createElement('div');
-  cell.className = 'cell' + (ev ? ' ' + ev.leg + ' has-event' : '') + (ev && ev.weekend ? ' weekend' : '');
+  cell.className = 'cell' + (ev ? ' ' + ev.leg : '') + (ev && ev.weekend ? ' weekend' : '');
   const num = document.createElement('div');
   num.className = 'num'; num.textContent = d;
   cell.appendChild(num);
@@ -270,9 +237,6 @@ function makeCell(y,m,d) {
     const badge = document.createElement('div');
     badge.className = 'badge-w'; badge.textContent = 'W';
     cell.appendChild(badge);
-  }
-  if (ev) {
-    cell.addEventListener('click', () => openDayModal(y,m,d,ev));
   }
   return cell;
 }
