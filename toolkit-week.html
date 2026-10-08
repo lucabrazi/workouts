@@ -63,7 +63,7 @@
         <!-- Confirm Modal -->
         <div class="nav-container" id="confirmModal" onclick="closeConfirmModal()">
             <div class="nav-modal-content" style="text-align: center;" onclick="event.stopPropagation()">
-                <h3 style="margin-bottom: 10px; color: var(--text-color);">Confirm Reset</h3>
+                <h3 id="confirmModalTitle" style="margin-bottom: 10px; color: var(--text-color);">Confirm Reset</h3>
                 <p id="confirmModalMsg" style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.95rem;">Are you sure you want to reset your progress?</p>
                 <div style="display: flex; gap: 10px; justify-content: center;">
                     <button class="nav-btn" onclick="closeConfirmModal()" style="flex: 1;">Cancel</button>
@@ -74,6 +74,16 @@
     </header>
 
     <main class="container">
+
+        <div class="week-bar">
+            <span class="week-bar-label">Toolkit week</span>
+            <div class="week-picker" role="group" aria-label="Toolkit week">
+                <button type="button" data-week="1">1</button>
+                <button type="button" data-week="2">2</button>
+                <button type="button" data-week="3">3</button>
+                <button type="button" data-week="4">4</button>
+            </div>
+        </div>
 
         <!-- MONDAY -->
         <div id="monday" class="workout-day">
@@ -86,26 +96,32 @@
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Dead bug</span><span
                             class="exercise-reps">8 each side, slow</span></label><button class="info-icon" data-name="Dead bug"
                         data-desc="Lie on your back, arms up and knees over hips. Slowly lower the opposite arm and leg while keeping your lower back pressed into the floor."
+                        data-video="https://www.youtube.com/results?search_query=dead+bug+exercise+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Side plank</span><span
                             class="exercise-reps">20–30 sec each side</span></label><button class="info-icon" data-name="Side plank"
                         data-desc="Support yourself on one forearm and the side of your feet, keeping a straight line from head to heels."
+                        data-video="https://www.youtube.com/results?search_query=side+plank+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Bird dog</span><span
                             class="exercise-reps">8 each side, 2-sec hold</span></label><button class="info-icon" data-name="Bird dog"
                         data-desc="On hands and knees, extend the opposite arm and leg, hold for 2 seconds without rotating your hips, then return."
+                        data-video="https://www.youtube.com/results?search_query=bird+dog+exercise+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Kettlebell or dumbbell halo</span><span
                             class="exercise-reps">6 each direction</span></label><button class="info-icon" data-name="Kettlebell or dumbbell halo"
                         data-desc="Hold the weight at chest height and circle it slowly around your head, keeping your core braced and ribs down."
+                        data-video="https://www.youtube.com/results?search_query=kettlebell+halo+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Suitcase carry</span><span
                             class="exercise-reps">20 steps each hand</span></label><button class="info-icon" data-name="Suitcase carry"
                         data-desc="Carry a weight in one hand at your side and walk tall without leaning toward the weight."
+                        data-video="https://www.youtube.com/results?search_query=suitcase+carry+kettlebell+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Glute bridge</span><span
                             class="exercise-reps">12 reps, bodyweight</span></label><button class="info-icon" data-name="Glute bridge"
                         data-desc="Lie on your back with knees bent, squeeze your glutes, and lift your hips off the floor."
+                        data-video="https://www.youtube.com/results?search_query=glute+bridge+form"
                         onclick="openInfoModal(event, this)">i</button></li>
             </ul>
             <div class="day-options">
@@ -140,20 +156,20 @@
         <!-- WEDNESDAY -->
         <div id="wednesday" class="workout-day">
             <h1>Wednesday — Flow</h1>
-            <a class="toolkit-link" data-toolkit-day="3" href="#" target="_blank" rel="noopener">&#9654; Toolkit: Day 3 (Flow)</a>
+            <a class="toolkit-link" data-toolkit-day="3" href="#" target="_blank" rel="noopener">&#9654; Toolkit: Day 3</a>
             <div class="note">Pick <strong>one</strong> option.</div>
             <div class="option-label">Option A</div>
             <ul>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Flow, repeated</span><span
                             class="exercise-reps">10–15 min</span></label><button class="info-icon" data-name="Flow, repeated"
-                        data-desc="Run through the Toolkit Day 3 flow, repeating it continuously for 10–15 minutes."
+                        data-desc="Run through today&#x27;s Toolkit session, repeating it continuously for 10–15 minutes."
                         onclick="openInfoModal(event, this)">i</button></li>
             </ul>
             <div class="option-label">Option B</div>
             <ul>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Flow, once through</span><span
                             class="exercise-reps">1 time</span></label><button class="info-icon" data-name="Flow, once through"
-                        data-desc="Run through the Toolkit Day 3 flow once."
+                        data-desc="Run through today&#x27;s Toolkit session once."
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Easy indoor ride</span><span
                             class="exercise-reps">20–30 min</span></label><button class="info-icon" data-name="Easy indoor ride"
@@ -176,22 +192,32 @@
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Dumbbell floor press</span><span
                             class="exercise-reps">8 reps</span></label><button class="info-icon" data-name="Dumbbell floor press"
                         data-desc="Lie on the floor with knees bent and press the dumbbells up from your chest until your arms are straight. Upper arms touch the floor at the bottom."
+                        data-video="https://www.youtube.com/results?search_query=dumbbell+floor+press+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">One-arm dumbbell row</span><span
                             class="exercise-reps">10 each side</span></label><button class="info-icon" data-name="One-arm dumbbell row"
                         data-desc="Brace one hand on a bench or knee, keep your back flat, and pull the dumbbell toward your hip."
+                        data-video="https://www.youtube.com/results?search_query=one+arm+dumbbell+row+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Half-kneeling dumbbell press</span><span
                             class="exercise-reps">8 each arm</span></label><button class="info-icon" data-name="Half-kneeling dumbbell press"
                         data-desc="Kneel on one knee with the other foot forward, squeeze your glutes, and press the dumbbell overhead without arching your back."
+                        data-video="https://www.youtube.com/results?search_query=half+kneeling+single+arm+dumbbell+press"
+                        onclick="openInfoModal(event, this)">i</button></li>
+                <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Alt: Seated dumbbell press</span><span
+                            class="exercise-reps">8 reps, instead of half-kneeling</span></label><button class="info-icon" data-name="Alt: Seated dumbbell press"
+                        data-desc="Sit tall on a bench or chair with back support and press both dumbbells overhead. Use this in place of the half-kneeling press if kneeling is uncomfortable."
+                        data-video="https://www.youtube.com/results?search_query=seated+dumbbell+shoulder+press+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Incline push-up</span><span
                             class="exercise-reps">8–10 reps</span></label><button class="info-icon" data-name="Incline push-up"
                         data-desc="Push-up with your hands on a bench, counter or step. Keep a straight body line from head to heels."
+                        data-video="https://www.youtube.com/results?search_query=incline+push+up+form"
                         onclick="openInfoModal(event, this)">i</button></li>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Farmer carry</span><span
                             class="exercise-reps">30–40 steps</span></label><button class="info-icon" data-name="Farmer carry"
                         data-desc="Hold a heavy weight in each hand at your sides and walk tall with your shoulders back."
+                        data-video="https://www.youtube.com/results?search_query=farmer+carry+dumbbell+form"
                         onclick="openInfoModal(event, this)">i</button></li>
             </ul>
             <div class="day-options">
@@ -233,8 +259,8 @@
             <a class="toolkit-link" data-toolkit-day="6" href="#" target="_blank" rel="noopener">&#9654; Toolkit: Day 6</a>
             <ul>
                 <li><label class="exercise-label"><input type="checkbox"><span class="exercise-name">Mobility routine</span><span
-                            class="exercise-reps">Toolkit Day 6</span></label><button class="info-icon" data-name="Mobility routine"
-                        data-desc="Follow the Toolkit Day 6 mobility session."
+                            class="exercise-reps">Toolkit session</span></label><button class="info-icon" data-name="Mobility routine"
+                        data-desc="Follow today&#x27;s Toolkit session."
                         onclick="openInfoModal(event, this)">i</button></li>
             </ul>
             <div class="day-options">
@@ -247,6 +273,9 @@
             <h1>Sunday — Rest</h1>
             <div class="rest-message">
                 <p>🛌 Full rest day.</p>
+            </div>
+            <div class="day-options">
+                <button type="button" class="next-week-action" onclick="startNextWeek()">Start next week &rarr;</button>
             </div>
         </div>
 
@@ -265,6 +294,8 @@
 
             <h1>Options</h1>
             <ul class="overview-list" style="margin-top: 15px;">
+                <li><button type="button" class="next-week-action" onclick="startNextWeek()"><strong>Start Next
+                            Week:</strong> Clear all ticks and move to the next Toolkit week</button></li>
                 <li><button type="button" class="reset-action" onclick="resetWeek()"><strong>Reset Week:</strong>
                         Uncheck everything and reset to Round 1</button></li>
             </ul>
@@ -273,10 +304,89 @@
     </main>
 
     <script>
-        // The Skool Toolkit (28-day program, 6 days a week). Every "Toolkit: Day N" button opens it.
-        const TOOLKIT_URL = 'https://www.skool.com/movesmethod/classroom/828d6756';
+        // The Skool Toolkit: a 28-day program, 6 days a week. Lesson per [week][day].
+        const TOOLKIT_BASE = 'https://www.skool.com/movesmethod/classroom/828d6756?md=';
+        const UPPER = 'Shoulders, Spine, Hamstrings, Hips, Wrists';
+        const LOWER = 'Shoulders, Ankles, Knees';
+        const TOOLKIT = {
+            1: {
+                1: [UPPER, '19819df8dae9425fa30a3718a5d5a91b'],
+                2: [LOWER, 'd9d56497e21d4df784b4bdc72073c934'],
+                3: ['Flow 1', '1c632f66d29a4bcb922434041606a763'],
+                4: [UPPER, 'a625eb49d41648b6b39e165c06a147e1'],
+                5: [LOWER, '14be5d901a1c446db2edefcc650ddcbd'],
+                6: [UPPER, 'fbf8e67082ae48e497593ff7966454a8']
+            },
+            2: {
+                1: [UPPER, '6fae5cbe4cf1497fbe85998fef681c43'],
+                2: [LOWER, '759b7464834a4e299ee081680f789786'],
+                3: ['Flow 2', '4642157547784cc286d489b2f3a74a53'],
+                4: [UPPER, '23c834b879194699a9af390be8d5994f'],
+                5: [LOWER, '5fb14054a1834922b863717607b48d3e'],
+                6: [UPPER, '75f7033a37f9424b99e6b67ce3aa5f61']
+            },
+            3: {
+                1: [UPPER, '67e3ecac984349c6a3ca2205d4644f2b'],
+                2: [LOWER, '882abc91a8ff45ef98d938eb259e4724'],
+                3: ['Flow 3', '1b0fd06851464e4e9e952c58c7528432'],
+                4: [UPPER, 'f6d92e15619249caad335b0c772a7eaf'],
+                5: [LOWER, 'a9f0ffb3c25b4599bfa5a5ac27a6ec16'],
+                6: [UPPER, '619ab2c911d646de814f4a991a56a194']
+            },
+            4: {
+                1: [UPPER, '458e9755d4304826bd0815a412377c34'],
+                2: ['Flow 1', 'e3f0cc9627414e5683b4247781d04028'],
+                3: [LOWER, '2cdd625ad8ff4e9d8d3ed33225563ebe'],
+                4: ['Flow 2', '1a43914dd4fa401583cc2b4bf58978f3'],
+                5: [UPPER, 'f25649e489dc49e9884bb738ca882254'],
+                6: ['Flow 3', '7a861b4ed2ed41a6aafa3ada83f9dae2']
+            }
+        };
 
-        document.querySelectorAll('.toolkit-link').forEach(link => link.href = TOOLKIT_URL);
+        const WEEK_KEY = 'toolkit-week';
+
+        function getToolkitWeek() {
+            try {
+                const saved = parseInt(localStorage.getItem(WEEK_KEY));
+                if (TOOLKIT[saved]) return saved;
+            } catch (e) { }
+            return 1;
+        }
+
+        // Point every Toolkit button at this week's lesson and highlight the chosen week
+        function setToolkitWeek(week) {
+            try { localStorage.setItem(WEEK_KEY, week); } catch (e) { }
+
+            document.querySelectorAll('.week-picker button').forEach(btn => {
+                btn.classList.toggle('active', parseInt(btn.dataset.week) === week);
+            });
+
+            document.querySelectorAll('.toolkit-link').forEach(link => {
+                const day = link.dataset.toolkitDay;
+                const [title, id] = TOOLKIT[week][day];
+                link.href = TOOLKIT_BASE + id;
+                link.textContent = `\u25B6 Week ${week}, Day ${day}: ${title}`;
+            });
+        }
+
+        document.querySelectorAll('.week-picker button').forEach(btn => {
+            btn.addEventListener('click', () => setToolkitWeek(parseInt(btn.dataset.week)));
+        });
+        setToolkitWeek(getToolkitWeek());
+
+        // Clear this week's ticks and move the picker forward; after Week 4 the program starts over
+        function startNextWeek() {
+            const current = getToolkitWeek();
+            const next = current >= 4 ? 1 : current + 1;
+            const msg = current >= 4
+                ? 'You finished Week 4. Clear all ticks and start the program again at Week 1?'
+                : `Clear all ticks and move from Week ${current} to Week ${next}?`;
+            openConfirmModal(msg, () => {
+                clearWeekProgress();
+                setToolkitWeek(next);
+                setDay('overview');
+            }, `Start Week ${next}`, 'Start');
+        }
     </script>
     <script src="app.js"></script>
 </body>

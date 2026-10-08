@@ -11,7 +11,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Production/live relationship:** Local development. Changes can be pushed to GitHub repository remote.
 - **Active phase:** Phase 8: Feature/Workflow Buildout
 - **Active step:** Wait for user instructions.
-- **Last completed step:** Split the app into multiple routines: a home page listing routines, the original routine moved to bodyweight-rope.html, and a new Toolkit Week routine added.
+- **Last completed step:** Split the app into multiple routines: a home page listing routines, the original routine moved to bodyweight-rope.html, and a new Toolkit Week routine added. Then added a Toolkit week picker (1–4) to toolkit-week.html: each day's button links to that week's Skool lesson; the chosen week is saved in localStorage under `toolkit-week`. Added a Start Next Week button (clears ticks, advances week, wraps 4→1) and YouTube links for Toolkit Week exercises; search-result links open in a new tab since they can't be embedded.
 - **Current non-negotiables:**
   - Keep layout simple, responsive, and readable.
   - Maintain LocalStorage state index mapping for all checkboxes. Bodyweight + Jump Rope keeps the original `workout-cb-` keys; other routines set their own `data-storage-prefix` on `<body>` (Toolkit Week uses `toolkit-cb-`).
@@ -22,7 +22,7 @@ Read this block first when starting a new AI/session, and update it before endin
 - **Protected areas:** [app.js](file:///c:/Repos/workouts/app.js) logic.
 - **Current scratch/local-only files:** None.
 - **Current verification commands:** None (manual browser checks of each routine page).
-- **Current commit/push status:** Multi-routine changes are uncommitted.
+- **Current commit/push status:** Multi-routine split committed locally (d7df5cd). Toolkit week picker, Start Next Week and video links are uncommitted. Pending: user wants to tweak Week 4 workouts and add Weeks 3–4 lower add-ons (goblet squat, DB Romanian deadlift, static split squat); day and reps not yet given. User pushes manually.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ## TODO

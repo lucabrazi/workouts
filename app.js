@@ -16,6 +16,7 @@ function openInfoModal(event, btn) {
     if (videoUrl) {
         videoBtn.style.display = 'flex';
         videoBtn.setAttribute('data-url', videoUrl);
+        videoBtn.textContent = isEmbeddableVideo(videoUrl) ? '▶ Watch Video' : '▶ Find Videos on YouTube';
     } else {
         videoBtn.style.display = 'none';
     }
@@ -29,9 +30,20 @@ function closeInfoModal() {
     if (modal) modal.classList.remove('show');
 }
 
+// Single YouTube videos can play in the popup; anything else (e.g. a search page) can't be embedded
+function isEmbeddableVideo(url) {
+    return url.includes('youtube.com/watch?v=') || url.includes('youtu.be/');
+}
+
 function openVideoModal() {
     let url = document.getElementById('infoModalVideoBtn').getAttribute('data-url');
     if (!url) return;
+
+    if (!isEmbeddableVideo(url)) {
+        closeInfoModal();
+        window.open(url, '_blank', 'noopener');
+        return;
+    }
 
     // Auto-convert standard YouTube links to iframe embed links
     if (url.includes('youtube.com/watch?v=')) {
@@ -55,8 +67,10 @@ function closeVideoModal() {
 // Custom Confirm Modal Logic
 let pendingConfirmCallback = null;
 
-function openConfirmModal(msg, callback) {
+function openConfirmModal(msg, callback, title = 'Confirm Reset', actionLabel = 'Reset') {
     document.getElementById('confirmModalMsg').textContent = msg;
+    document.getElementById('confirmModalTitle').textContent = title;
+    document.getElementById('confirmActionBtn').textContent = actionLabel;
     pendingConfirmCallback = callback;
     const modal = document.getElementById('confirmModal');
     if (modal) modal.classList.add('show');
@@ -264,28 +278,31 @@ function initRounds() {
 
 // Function to reset all progress for the entire week
 function resetWeek() {
-    openConfirmModal('Are you sure you want to reset all workout progress for the week?', () => {
-        const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-        allCheckboxes.forEach((cb, index) => {
-            cb.checked = false;
-            localStorage.removeItem(`${storagePrefix}${index}`);
-        });
+    openConfirmModal('Are you sure you want to reset all workout progress for the week?', clearWeekProgress);
+}
 
-        // Reset all dynamic rounds back to Round 1
-        document.querySelectorAll('.rounds-container').forEach(container => {
-            const lists = container.querySelectorAll('.round-list');
-            lists.forEach(list => list.classList.remove('active'));
-            const firstRound = container.querySelector('.round-list[data-round="1"]');
-            if (firstRound) firstRound.classList.add('active');
+// Uncheck everything and put every round back to Round 1, without asking
+function clearWeekProgress() {
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    allCheckboxes.forEach((cb, index) => {
+        cb.checked = false;
+        localStorage.removeItem(`${storagePrefix}${index}`);
+    });
 
-            const indicator = container.querySelector('.round-indicator');
-            if (indicator) indicator.textContent = `Round 1 / ${lists.length}`;
+    // Reset all dynamic rounds back to Round 1
+    document.querySelectorAll('.rounds-container').forEach(container => {
+        const lists = container.querySelectorAll('.round-list');
+        lists.forEach(list => list.classList.remove('active'));
+        const firstRound = container.querySelector('.round-list[data-round="1"]');
+        if (firstRound) firstRound.classList.add('active');
 
-            const prevBtn = container.querySelector('.prev-round');
-            if (prevBtn) prevBtn.disabled = true;
-            const nextBtn = container.querySelector('.next-round');
-            if (nextBtn && lists.length > 1) nextBtn.disabled = false;
-        });
+        const indicator = container.querySelector('.round-indicator');
+        if (indicator) indicator.textContent = `Round 1 / ${lists.length}`;
+
+        const prevBtn = container.querySelector('.prev-round');
+        if (prevBtn) prevBtn.disabled = true;
+        const nextBtn = container.querySelector('.next-round');
+        if (nextBtn && lists.length > 1) nextBtn.disabled = false;
     });
 }
 
