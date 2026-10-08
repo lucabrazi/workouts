@@ -225,7 +225,9 @@ function changeRound(btn, direction, maxRounds) {
 function initRounds() {
     document.querySelectorAll('.rounds').forEach(roundSpan => {
         const h2 = roundSpan.parentElement;
-        const ul = h2.nextElementSibling;
+        // The exercise list follows the heading; notes (.note) may sit in between
+        let ul = h2.nextElementSibling;
+        while (ul && ul.classList.contains('note')) ul = ul.nextElementSibling;
         if (ul && ul.tagName === 'UL') {
             // Use the largest number so a range like "2–3 Rounds" builds 3 rounds
             const match = roundSpan.textContent.match(/\d+/g);

@@ -9,7 +9,7 @@ Read this before changing anything. Then read [WORKING_MEMORY.md](WORKING_MEMORY
 3. **No build steps, bundlers, frameworks or npm.** Plain HTML, CSS and JS that open straight from disk (`file://`) and work on a static host.
 4. **Leave `greece.html`, `greeceV1.html` and `greeceV2.html` alone.** They are an unrelated trip planner that happens to live in this repo.
 5. **Don't break anyone's saved progress.** See [Saved progress](#saved-progress-read-before-touching-checkboxes). This is the easiest thing to break by accident.
-6. **Don't hand-edit `toolkit-week.html`.** It is generated. See [Toolkit Week](#toolkit-week-generated-page).
+6. **Don't hand-edit `toolkit-week.html`.** It is generated. See [Mobility & Strength](#mobility--strength-generated-page).
 7. **Verify in a real browser before committing.** See [Verifying changes](#verifying-changes).
 8. Keep the layout simple and readable on a phone. Most use is on an iPhone.
 
@@ -18,8 +18,8 @@ Read this before changing anything. Then read [WORKING_MEMORY.md](WORKING_MEMORY
 | File | What it is |
 |---|---|
 | `index.html` | Home page: one card per routine. Also forwards old bookmarks (see below). |
-| `bodyweight-rope.html` | Routine 1: Bodyweight + Jump Rope. Hand-written. Has Moderate/Extreme modes. |
-| `toolkit-week.html` | Routine 2: 28-day Mobility Toolkit + Strength + Cardio. **Generated**; don't edit. |
+| `bodyweight-rope.html` | Routine "Bodyweight + Jump Rope". Hand-written. Has Moderate/Extreme modes. |
+| `toolkit-week.html` | Routine "Mobility & Strength" (listed first on the home page): 28-day Mobility Toolkit + Strength + Cardio. **Generated**; don't edit. The filename predates the rename; keep it so links and saved progress keep working. |
 | `scripts/build_toolkit_week.py` | Builds `toolkit-week.html`. Edit the Toolkit plan here. |
 | `styles.css` | Shared styles for every page. |
 | `app.js` | Shared behaviour for every routine page (views, rounds, modes, popups, saving, reset). |
@@ -47,7 +47,7 @@ Each routine is one HTML page that links `styles.css` and loads `app.js` at the 
     onclick="openInfoModal(event, this)">i</button></li>
 ```
 
-**Rounds.** Put `<span class="rounds">3 Rounds</span>` inside an `<h2>`, and the `<ul>` of exercises **immediately after** that `<h2>`. `initRounds()` copies the list once per round and adds Prev/Next buttons. Anything between the `<h2>` and the `<ul>` (a note, a div) stops rounds from building, so put notes *before* the heading. A range like "2–3 Rounds" builds the larger number.
+**Rounds.** Put `<span class="rounds">3 Rounds</span>` inside an `<h2>`, and the `<ul>` of exercises right after that `<h2>`. `initRounds()` copies the list once per round and adds Prev/Next buttons right before it. Only `<div class="note">` elements may sit between the `<h2>` and the `<ul>`; they stay between the heading and the Prev/Next buttons (e.g. the rest-times note under "Circuit"). Anything else stops rounds from building. A range like "2–3 Rounds" builds the larger number.
 
 Per-round text uses pipe-separated attributes on elements inside the list: `data-round-text` (visible name), `data-round-name` / `data-round-desc` (info popup), `data-round-reps-moderate` / `data-round-reps-extreme`. Round 1 uses the first value; missing values repeat the last one.
 
@@ -59,7 +59,7 @@ Per-round text uses pipe-separated attributes on elements inside the list: `data
 
 **Popups.** `openConfirmModal(message, onConfirm, title = 'Confirm Reset', buttonLabel = 'Reset')`. Every routine page must include the info, video and confirm modal markup with the same ids (`infoModal`, `videoModal`, `confirmModal`, `confirmModalTitle`, `confirmModalMsg`, `confirmActionBtn`). Copy it from `bodyweight-rope.html`.
 
-**Reset.** `resetDay(id)` and `resetWeek()` ask first; `clearWeekProgress()` clears without asking (used by Toolkit Week's "Start next week").
+**Reset.** `resetDay(id)` and `resetWeek()` ask first; `clearWeekProgress()` clears without asking (used by Mobility & Strength's "Start next week").
 
 ## Saved progress (read before touching checkboxes)
 
@@ -75,9 +75,9 @@ Rules:
 - **In `bodyweight-rope.html`, changing the list of checkboxes moves the user's saved ticks.** Tell the user before you do it. Editing text, reps or descriptions is safe.
 - Don't change an existing page's `data-storage-prefix`. That wipes its saved progress.
 - Migrating `bodyweight-rope.html` to `data-key` is a reasonable future task, but it orphans existing ticks unless you also convert the old keys. Ask the user first.
-- Toolkit Week also saves the chosen week under `toolkit-week`.
+- Mobility & Strength also saves the chosen week under `toolkit-week`.
 
-## Toolkit Week (generated page)
+## Mobility & Strength (generated page)
 
 `toolkit-week.html` is built by `scripts/build_toolkit_week.py`. To change it:
 

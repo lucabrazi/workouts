@@ -101,7 +101,7 @@ class Variant:
 
     def toolkit(self, n):
         title, md = TOOLKIT[self.week][n]
-        self.add(f'            <a class="toolkit-link" href="{SKOOL}{md}" target="_blank" rel="noopener">&#9654; Week {self.week}, Day {n}: {e(title)}</a>')
+        self.add(f'            <a class="toolkit-link" href="{SKOOL}{md}" target="_blank" rel="noopener">&#9654; Mobility Toolkit: Week {self.week}, Day {n}, {e(title)}</a>')
         self.ul(('Toolkit session', f'Day {n}', f'Follow the Week {self.week}, Day {n} lesson on Skool: {title}.'))
 
     def heading(self, text, rounds=None):
@@ -119,10 +119,10 @@ CALVES = 'Pick <strong>one</strong> option. If your calves or Achilles feel tigh
 
 def core_circuit(v, rounds, side_plank):
     v.equipment('Kettlebell or dumbbell')
-    v.note(REST)
     if rounds != '2 Rounds':
         v.note(SORE)
     v.heading('Core Circuit', rounds)
+    v.note(REST)
     v.ul(('Dead bug', '8 each side, slow'),
          ('Side plank', side_plank),
          ('Bird dog', '8 each side, 2-sec hold'),
@@ -134,10 +134,10 @@ def core_circuit(v, rounds, side_plank):
 def upper_circuit(v, rounds, weights):
     v.equipment('Dumbbells')
     v.note(f'<strong>Weights:</strong> {weights}')
-    v.note(REST)
     if rounds != '2 Rounds':
         v.note(SORE)
     v.heading('Upper Circuit', rounds)
+    v.note(REST)
     v.ul(('Dumbbell floor press', '8 reps'),
          ('One-arm dumbbell row', '10 each side'),
          ('Half-kneeling dumbbell press', '8 each arm'),
@@ -290,7 +290,7 @@ page = f'''<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toolkit Week</title>
+    <title>Mobility &amp; Strength</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -300,7 +300,7 @@ page = f'''<!DOCTYPE html>
     <header>
         <div class="header-top">
             <a class="back-link" href="index.html" aria-label="All routines">&lsaquo; Routines</a>
-            <div class="header-title">Toolkit Week</div>
+            <div class="header-title">Mobility &amp; Strength</div>
             <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
         </div>
         <nav class="nav-container" id="navModal">
