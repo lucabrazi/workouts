@@ -1,6 +1,14 @@
 # Weekly Workout Routine Tracker
 
-A lightweight, clean, and responsive web application to track weekly workout progress, rounds, and exercises. Built using vanilla HTML, CSS, and JavaScript with zero external dependencies.
+A lightweight, clean, and responsive web application to track weekly workout progress, rounds, and exercises across multiple routines. Built using vanilla HTML, CSS, and JavaScript with zero external dependencies.
+
+## Routines
+
+- **[index.html](index.html):** Home page listing all routines.
+- **[bodyweight-rope.html](bodyweight-rope.html):** Bodyweight + Jump Rope week (Moderate/Extreme modes).
+- **[toolkit-week.html](toolkit-week.html):** Toolkit Week (core, cardio, flow, upper, mobility), linking to the Skool Toolkit program.
+
+Shared styles live in [styles.css](styles.css) and shared behavior in [app.js](app.js). Each routine page sets `data-storage-prefix` on `<body>` so saved progress stays separate per routine.
 
 ## Features
 
@@ -13,7 +21,7 @@ A lightweight, clean, and responsive web application to track weekly workout pro
 ## Getting Started
 
 Since this is a vanilla web application, there are no build steps or dependencies:
-1. Open the [index.html](file:///c:/Repos/workouts/index.html) file directly in any modern web browser.
+1. Open the [index.html](file:///c:/Repos/workouts/index.html) file directly in any modern web browser and pick a routine.
 2. Bookmark the page or host it on a service like GitHub Pages for easy access on mobile devices.
 
 ---

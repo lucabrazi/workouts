@@ -7,7 +7,7 @@ This document outlines the standard process for adding or replacing exercise dem
 ## The Workflow
 
 ### 1. Identify Target Exercises
-Find the exercises that need video links by locating the `<button class="info-icon">` elements in [index.html](../index.html).
+Find the exercises that need video links by locating the `<button class="info-icon">` elements in the routine page (e.g. [bodyweight-rope.html](../bodyweight-rope.html) or [toolkit-week.html](../toolkit-week.html)).
 *   Note the exact exercise name inside the `data-name` attribute or the adjacent `.exercise-name` span.
 
 ### 2. Query YouTube for Candidates
@@ -67,7 +67,7 @@ Add the `data-video` attribute with the full YouTube watch URL to the correspond
 ```
 
 ### 6. Manual Verification Check
-1.  Open [index.html](../index.html) in your browser.
+1.  Open the routine page in your browser.
 2.  Navigate to the day tab and click the **"i" (Info)** button of the modified exercise.
 3.  Confirm the **"Watch Video"** button is displayed.
 4.  Click the button to open the fullscreen video overlay modal.
