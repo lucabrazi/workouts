@@ -4,7 +4,7 @@ This file maintains the active state, goals, and history of the project to allow
 
 ## AI Working Memory
 
-Read this block first when starting a new AI/session, and update it before ending a session.
+Read [CLAUDE.md](CLAUDE.md) first for the editing rules, then this block. Update this block before ending a session.
 
 - **Project goal:** Weekly Workout Routine Tracker (Vanilla HTML/CSS/JS) with LocalStorage persistence, multi-round tracking, video embeds, and clean UI.
 - **Current repo shape:** Flat root directory. Home page [index.html](file:///c:/Repos/workouts/index.html) lists routines; each routine is its own page ([bodyweight-rope.html](file:///c:/Repos/workouts/bodyweight-rope.html), [toolkit-week.html](file:///c:/Repos/workouts/toolkit-week.html)) sharing [styles.css](file:///c:/Repos/workouts/styles.css) and [app.js](file:///c:/Repos/workouts/app.js). greece*.html are an unrelated trip planner; leave them alone.

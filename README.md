@@ -29,6 +29,7 @@ Since this is a vanilla web application, there are no build steps or dependencie
 ## Repository Documentation
 
 We follow a structured workflow to keep development safe, clean, and organized:
+- **[CLAUDE.md](CLAUDE.md):** Rules for AI agents and developers: how the pages work, how saved progress is keyed, how to edit the generated Toolkit Week page, and how to verify changes. Read this first.
 - **[PROJECT_STARTER.md](file:///c:/Repos/workouts/PROJECT_STARTER.md):** Process guide, ground rules, phase roadmap, and coding standards.
 - **[WORKING_MEMORY.md](file:///c:/Repos/workouts/WORKING_MEMORY.md):** Current state, active task tracking, and chat session history for AI assistants.
 - **[video_addition_workflow.md](file:///c:/Repos/workouts/docs/video_addition_workflow.md):** The step-by-step developer workflow for adding and verifying exercise video embeds.
