@@ -548,3 +548,17 @@ li:last-child {
 .next-week-action:hover {
     text-decoration: underline;
 }
+
+/* One version of each day per Toolkit week; the week picker shows one */
+.week-variant {
+    display: none;
+}
+
+.week-variant.active {
+    display: block;
+}
+
+.notes-list li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}

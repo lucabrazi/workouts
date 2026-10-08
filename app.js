@@ -98,6 +98,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // between routines. The original routine keeps the old 'workout-cb-' keys.
 const storagePrefix = document.body.dataset.storagePrefix || 'workout-cb-';
 
+// Storage key for one checkbox. Checkboxes with a data-key are saved by name (plus round),
+// so adding or reordering exercises doesn't move ticks; others fall back to page position.
+function checkboxKey(cb, index) {
+    if (!cb.dataset.key) return `${storagePrefix}${index}`;
+    const round = cb.closest('.round-list');
+    return `${storagePrefix}${cb.dataset.key}${round ? `-r${round.dataset.round}` : ''}`;
+}
+
 let currentActiveDay = 'overview';
 let currentWorkoutMode = 'moderate';
 
@@ -286,7 +294,7 @@ function clearWeekProgress() {
     const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
     allCheckboxes.forEach((cb, index) => {
         cb.checked = false;
-        localStorage.removeItem(`${storagePrefix}${index}`);
+        localStorage.removeItem(checkboxKey(cb, index));
     });
 
     // Reset all dynamic rounds back to Round 1
@@ -316,7 +324,7 @@ function resetDay(dayId) {
         allCheckboxes.forEach((cb, index) => {
             if (dayDiv.contains(cb)) {
                 cb.checked = false;
-                localStorage.removeItem(`${storagePrefix}${index}`);
+                localStorage.removeItem(checkboxKey(cb, index));
             }
         });
 
@@ -367,11 +375,11 @@ window.addEventListener('DOMContentLoaded', () => {
     // 2. Add LocalStorage persistence for all checkboxes
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach((cb, index) => {
-        const savedState = localStorage.getItem(`${storagePrefix}${index}`);
+        const savedState = localStorage.getItem(checkboxKey(cb, index));
         if (savedState === 'true') cb.checked = true;
 
         cb.addEventListener('change', (e) => {
-            localStorage.setItem(`${storagePrefix}${index}`, e.target.checked);
+            localStorage.setItem(checkboxKey(cb, index), e.target.checked);
         });
     });
 });
