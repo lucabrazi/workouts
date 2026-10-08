@@ -88,8 +88,8 @@ Rules:
 What's in the script:
 - `TOOLKIT`: Skool lesson title and `md=` id for each week (1–4) and Toolkit day (1–6). The links go to the user's Skool "Moves Method" classroom. Skool needs a login, so the app can only link to lessons, not show them.
 - `EX`: exercise library (description and YouTube search query), shared across all weeks.
-- `W23`: per-week numbers for Weeks 2–3 (rounds, bike minutes, rope intervals).
-- `build(day, week)`: what each day looks like in each week. Week 1 is Toolkit only, Weeks 2–3 share a layout, and Week 4 has its own reordered layout.
+- `W23`: per-week numbers for Weeks 1–3 (rounds, bike minutes, rope intervals). Week 1 is a copy of Week 2.
+- `build(day, week)`: what each day looks like in each week. Weeks 1–3 share a layout, and Week 4 has its own reordered layout. The user repeats the 28-day cycle, so Week 1 deliberately uses the Week 2 routine (2-round circuits) instead of the original plan's "Toolkit only"; "Start next week" wraps Week 4 back to Week 1.
 
 How the page works: each day contains four `<div class="week-variant" data-week="N">` blocks. The week picker adds `.active` to the matching block (CSS hides the others) and saves the choice. Every checkbox's `data-key` is `<day>-w<week>-<exercise-slug>`, so **renaming an exercise in the script resets its saved ticks**. That's acceptable, but mention it to the user.
 

@@ -64,7 +64,6 @@ EX = {
     'Indoor bike, zone 2': (ZONE2, None),
     'Indoor bike': (ZONE2, None),
     'Easy indoor ride': ('A relaxed, easy spin on the indoor bike. Keep it conversational.', None),
-    'Easy walk or ride': ('An easy walk or relaxed indoor ride. Optional; skip it if you would rather rest.', None),
     'Jump rope intervals': ('Jump for the "on" time, then rest or bounce easy for the "off" time. If your calves or Achilles feel tight, choose the bike instead.', None),
 }
 
@@ -150,13 +149,15 @@ DAYS = [('monday', 'Monday', 1), ('tuesday', 'Tuesday', 2), ('wednesday', 'Wedne
         ('thursday', 'Thursday', 4), ('friday', 'Friday', 5), ('saturday', 'Saturday', 6),
         ('sunday', 'Sunday', None)]
 
-# Per-week numbers from the Progression Summary
+# Per-week numbers from the Progression Summary. The plan repeats every 28 days, so Week 1
+# uses the Week 2 routine (2-round circuits) instead of the plan's original "Toolkit only".
 W23 = {
     2: dict(core='2 Rounds', upper='2 Rounds', weights='Light.', tue_bike='30 min', fri_bike='45 min',
             rope='6–8 rounds: 30 sec on, 30 sec off', fri_rope='5 rounds: 30 sec on, 30 sec off'),
     3: dict(core='3 Rounds', upper='3 Rounds', weights='Same as Week 2.', tue_bike='35 min', fri_bike='50 min',
             rope='8–10 rounds: 1 min on, 1 min off', fri_rope='5 rounds: 1 min on, 1 min off'),
 }
+W23[1] = W23[2]
 
 
 def build(day, week):
@@ -170,12 +171,7 @@ def build(day, week):
             </div>''')
         return 'Rest', 'Rest', v
 
-    if week == 1:
-        v.toolkit(n)
-        v.ul(('Easy walk or ride', 'optional'))
-        return 'Toolkit', f'Toolkit Day {n}', v
-
-    if week in (2, 3):
+    if week in (1, 2, 3):
         w = W23[week]
         if day == 'monday':
             v.toolkit(n)
