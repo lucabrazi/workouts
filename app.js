@@ -194,6 +194,9 @@ function setDay(dayId) {
 
         currentActiveDay = dayId;
         updateUrl(currentActiveDay, currentWorkoutMode);
+
+        // Let page-specific controls (like a day stepper) follow along
+        document.dispatchEvent(new CustomEvent('daychange', { detail: dayId }));
     }
 }
 

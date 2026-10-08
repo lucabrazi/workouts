@@ -25,6 +25,7 @@ Read [CLAUDE.md](CLAUDE.md) first for the editing rules, then this block. Update
 - **Current commit/push status:** Multi-routine split committed locally (d7df5cd). Toolkit week picker, Start Next Week and video links are uncommitted. Week picker etc. committed (bf03ad5). The 28-day plan rebuild is committed after that. User pushes manually.
 - **Latest change:** Renamed Toolkit Week to "Mobility & Strength" (file stays toolkit-week.html) and listed it first on the home page; Toolkit buttons say "Mobility Toolkit"; rest note sits between the Circuit heading and the round buttons (initRounds skips .note elements).
 - **Repeating cycle:** User repeats the 28-day plan, so Week 1 now uses the Week 2 routine (core, upper, cardio, 2-round circuits) with Week 1's Toolkit lessons.
+- **Steppers:** The Mobility & Strength week picker is now a bar with ‹ Week › and ‹ Day › steppers; app.js setDay() fires a `daychange` event the day stepper listens to.
 - **Next task:** Wait for user instructions on upcoming workout features or UI tweaks.
 
 ## TODO

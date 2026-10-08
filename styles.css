@@ -488,48 +488,56 @@ li:last-child {
     font-size: 0.95rem;
 }
 
-/* Toolkit week picker (Toolkit Week routine) */
+/* Week and day steppers (Mobility & Strength routine) */
 .week-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 8px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 12px;
-    padding: 10px 16px;
+    padding: 8px 6px;
     margin-bottom: 16px;
 }
 
-.week-bar-label {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #475569;
-}
-
-.week-picker {
+.stepper {
     display: flex;
-    gap: 6px;
+    align-items: center;
+    gap: 2px;
 }
 
-.week-picker button {
-    width: 38px;
+.step-btn {
+    width: 34px;
     height: 34px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
     background: white;
     font-family: inherit;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-color);
+    font-size: 1.4rem;
+    line-height: 1;
+    color: var(--primary-color);
     cursor: pointer;
     transition: all 0.2s;
 }
 
-.week-picker button.active {
+.step-btn:not(:disabled):hover {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: white;
+}
+
+.step-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.step-label {
+    min-width: 62px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #334155;
 }
 
 .next-week-action {

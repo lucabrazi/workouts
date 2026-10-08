@@ -6,7 +6,7 @@ A lightweight, clean, and responsive web application to track weekly workout pro
 
 - **[index.html](index.html):** Home page listing all routines.
 - **[bodyweight-rope.html](bodyweight-rope.html):** Bodyweight + Jump Rope week (Moderate/Extreme modes).
-- **[toolkit-week.html](toolkit-week.html):** Mobility & Strength, a 28-day Mobility Toolkit + Strength + Cardio plan. A Week 1–4 picker shows that week's version of each day and links to that week's Skool lessons. This page is generated: edit [scripts/build_toolkit_week.py](scripts/build_toolkit_week.py) and run `python scripts/build_toolkit_week.py`.
+- **[toolkit-week.html](toolkit-week.html):** Mobility & Strength, a 28-day Mobility Toolkit + Strength + Cardio plan. ‹ Week › and ‹ Day › steppers at the top move between weeks 1–4 and days; each week shows its own version of each day and links to that week's Skool lessons. This page is generated: edit [scripts/build_toolkit_week.py](scripts/build_toolkit_week.py) and run `python scripts/build_toolkit_week.py`.
 
 Shared styles live in [styles.css](styles.css) and shared behavior in [app.js](app.js). Each routine page sets `data-storage-prefix` on `<body>` so saved progress stays separate per routine.
 

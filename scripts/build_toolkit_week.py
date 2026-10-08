@@ -278,6 +278,8 @@ for week in range(1, 5):
                 </ul>
             </div>''')
 
+day_ids = ', '.join(f"'{d}'" for d, _, _ in DAYS)
+day_labels = ', '.join(f"{d}: '{nm[:3]}'" for d, nm, _ in DAYS)
 nav = '\n'.join(f'''                <button class="nav-btn" onclick="setDay('{d}')">{nm[:3]}</button>''' for d, nm, _ in DAYS)
 
 page = f'''<!DOCTYPE html>
@@ -314,12 +316,15 @@ page = f'''<!DOCTYPE html>
     <main class="container">
 
         <div class="week-bar">
-            <span class="week-bar-label">Toolkit week</span>
-            <div class="week-picker" role="group" aria-label="Toolkit week">
-                <button type="button" data-week="1">1</button>
-                <button type="button" data-week="2">2</button>
-                <button type="button" data-week="3">3</button>
-                <button type="button" data-week="4">4</button>
+            <div class="stepper" role="group" aria-label="Toolkit week">
+                <button type="button" class="step-btn" id="weekPrev" aria-label="Previous week">&lsaquo;</button>
+                <span class="step-label" id="weekLabel">Week 1</span>
+                <button type="button" class="step-btn" id="weekNext" aria-label="Next week">&rsaquo;</button>
+            </div>
+            <div class="stepper" role="group" aria-label="Day">
+                <button type="button" class="step-btn" id="dayPrev" aria-label="Previous day">&lsaquo;</button>
+                <span class="step-label" id="dayLabel">Overview</span>
+                <button type="button" class="step-btn" id="dayNext" aria-label="Next day">&rsaquo;</button>
             </div>
         </div>
 
@@ -360,13 +365,13 @@ page = f'''<!DOCTYPE html>
             return 1;
         }}
 
-        // Show this week's version of every day and highlight the chosen week
+        // Show this week's version of every day and update the Week stepper
         function setToolkitWeek(week) {{
             try {{ localStorage.setItem(WEEK_KEY, week); }} catch (e) {{ }}
 
-            document.querySelectorAll('.week-picker button').forEach(btn => {{
-                btn.classList.toggle('active', parseInt(btn.dataset.week) === week);
-            }});
+            document.getElementById('weekLabel').textContent = `Week ${{week}}`;
+            document.getElementById('weekPrev').disabled = week <= 1;
+            document.getElementById('weekNext').disabled = week >= 4;
             document.querySelectorAll('.week-variant').forEach(v => {{
                 v.classList.toggle('active', parseInt(v.dataset.week) === week);
             }});
@@ -386,10 +391,24 @@ page = f'''<!DOCTYPE html>
             }}, `Start Week ${{next}}`, 'Start');
         }}
 
-        document.querySelectorAll('.week-picker button').forEach(btn => {{
-            btn.addEventListener('click', () => setToolkitWeek(parseInt(btn.dataset.week)));
-        }});
+        document.getElementById('weekPrev').addEventListener('click', () => setToolkitWeek(getToolkitWeek() - 1));
+        document.getElementById('weekNext').addEventListener('click', () => setToolkitWeek(getToolkitWeek() + 1));
         setToolkitWeek(getToolkitWeek());
+
+        // Day stepper: Overview, then Monday to Sunday. It follows setDay() wherever it's called from.
+        const STEP_DAYS = ['overview', {day_ids}];
+        const DAY_LABELS = {{ overview: 'Overview', {day_labels} }};
+        let stepDay = 'overview';
+
+        document.addEventListener('daychange', e => {{
+            stepDay = e.detail;
+            const i = STEP_DAYS.indexOf(stepDay);
+            document.getElementById('dayLabel').textContent = DAY_LABELS[stepDay];
+            document.getElementById('dayPrev').disabled = i <= 0;
+            document.getElementById('dayNext').disabled = i >= STEP_DAYS.length - 1;
+        }});
+        document.getElementById('dayPrev').addEventListener('click', () => setDay(STEP_DAYS[STEP_DAYS.indexOf(stepDay) - 1]));
+        document.getElementById('dayNext').addEventListener('click', () => setDay(STEP_DAYS[STEP_DAYS.indexOf(stepDay) + 1]));
 
         // Ticks used to be saved by position (toolkit-cb-0, -1, ...); those keys no longer match anything
         try {{

@@ -31,7 +31,7 @@ Read this before changing anything. Then read [WORKING_MEMORY.md](WORKING_MEMORY
 
 Each routine is one HTML page that links `styles.css` and loads `app.js` at the **end of `<body>`** (app.js reads `document.body` immediately).
 
-**Views.** Each day is a `<div id="monday" class="workout-day">`; the overview is `<div id="overview" class="workout-day active">`. `setDay(id)` shows one. Valid `?day=` values come from whatever `.workout-day` ids exist on the page, so day ids must be unique, lowercase and URL-safe.
+**Views.** Each day is a `<div id="monday" class="workout-day">`; the overview is `<div id="overview" class="workout-day active">`. `setDay(id)` shows one and fires a `daychange` event on `document` (detail = day id) so page-specific controls can follow. Valid `?day=` values come from whatever `.workout-day` ids exist on the page, so day ids must be unique, lowercase and URL-safe.
 
 **Menu.** Buttons in `#navModal` call `setDay('monday')`. The active button is found by matching `'monday'` *with the quotes* inside its `onclick`, so keep that exact form. Links in the menu (like "All Routines") are `<a class="nav-btn nav-link">` with no onclick.
 
@@ -91,7 +91,7 @@ What's in the script:
 - `W23`: per-week numbers for Weeks 1–3 (rounds, bike minutes, rope intervals). Week 1 is a copy of Week 2.
 - `build(day, week)`: what each day looks like in each week. Weeks 1–3 share a layout, and Week 4 has its own reordered layout. The user repeats the 28-day cycle, so Week 1 deliberately uses the Week 2 routine (2-round circuits) instead of the original plan's "Toolkit only"; "Start next week" wraps Week 4 back to Week 1.
 
-How the page works: each day contains four `<div class="week-variant" data-week="N">` blocks. The week picker adds `.active` to the matching block (CSS hides the others) and saves the choice. Every checkbox's `data-key` is `<day>-w<week>-<exercise-slug>`, so **renaming an exercise in the script resets its saved ticks**. That's acceptable, but mention it to the user.
+How the page works: each day contains four `<div class="week-variant" data-week="N">` blocks. A bar at the top has two steppers, **‹ Week N ›** (1–4, saved under `toolkit-week`) and **‹ Day ›** (Overview, then Mon–Sun). The week stepper adds `.active` to the matching block (CSS hides the others); the day stepper calls `setDay()` and follows the `daychange` event, so the menu and overview links keep it in sync. Keep the bar fitting on a 360px-wide phone. Every checkbox's `data-key` is `<day>-w<week>-<exercise-slug>`, so **renaming an exercise in the script resets its saved ticks**. That's acceptable, but mention it to the user.
 
 The user's plan is the source of truth. If the plan's daily text and its progression table disagree, ask the user. Don't guess.
 
